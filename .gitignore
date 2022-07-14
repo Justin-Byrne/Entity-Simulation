@@ -1,0 +1,13 @@
+### Xcode ###
+# Template for Xcode projects
+
+## Derived B.S.
+DerivedData
+/DerivedData/
+!DerivedData/**
+*.noindex/
+*.noindex
+.DS_Store
+
+## User Settgins
+xcuserdata/
