@@ -1,8 +1,8 @@
-// @File: 		point.hpp
-// @Project: 	Entity Simulation
-// @Author:		Justin Byrne
-// @Date:		Created 6/23/22 at 11:23 AM
-// @Copyright:	Copyright (c) 2022 Byrne-Systems
+// @File:       point.hpp
+// @Project:    Entity Simulation
+// @Author:     Justin Byrne
+// @Date:       Created 6/23/22 at 11:23 AM
+// @Copyright:  Copyright (c) 2022 Byrne-Systems
 
 #ifndef point_hpp
 #define point_hpp

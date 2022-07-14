@@ -1,8 +1,8 @@
-// @File: 		colors.hpp
-// @Project: 	Entity Simulation
-// @Author:		Justin Byrne
-// @Date:		Created 6/23/22 at 1:13 PM
-// @Copyright:	Copyright (c) 2022 Byrne-Systems
+// @File:       colors.hpp
+// @Project:    Entity Simulation
+// @Author:     Justin Byrne
+// @Date:       Created 6/23/22 at 1:13 PM
+// @Copyright:  Copyright (c) 2022 Byrne-Systems
 
 #ifndef colors_hpp
 #define colors_hpp

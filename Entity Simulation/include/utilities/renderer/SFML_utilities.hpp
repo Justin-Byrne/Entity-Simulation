@@ -1,8 +1,8 @@
-// @File: 		SFML_utilities.hpp
-// @Project: 	Entity Simulation
-// @Author:		Justin Byrne
-// @Date:		Created 7/10/22 at 1:13 PM
-// @Copyright:	Copyright (c) 2022 Byrne-Systems
+// @File:       SFML_utilities.hpp
+// @Project:    Entity Simulation
+// @Author:     Justin Byrne
+// @Date:       Created 7/10/22 at 1:13 PM
+// @Copyright:  Copyright (c) 2022 Byrne-Systems
 
 #ifndef SFML_utilities_hpp
 #define SFML_utilities_hpp

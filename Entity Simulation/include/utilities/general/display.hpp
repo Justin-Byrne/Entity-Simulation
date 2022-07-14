@@ -1,8 +1,8 @@
-// @File: 		debug.hpp
-// @Project: 	Entity Simulation
-// @Author:		Justin Byrne
-// @Date:		Created 7/13/22 at 5:47 PM
-// @Copyright:	Copyright (c) 2022 Byrne-Systems
+// @File:       debug.hpp
+// @Project:    Entity Simulation
+// @Author:     Justin Byrne
+// @Date:       Created 7/13/22 at 5:47 PM
+// @Copyright:  Copyright (c) 2022 Byrne-Systems
 
 #ifndef display_hpp
 #define display_hpp

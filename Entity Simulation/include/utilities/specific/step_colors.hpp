@@ -1,9 +1,8 @@
-//
-//  step_colors.hpp
-//  Entity Simulation
-//
-//  Created by Justin Byrne on 6/26/22.
-//
+// @File:       step_colors.cpp
+// @Project:    Entity Simulation
+// @Author:     Justin Byrne
+// @Date:       Created 6/26/22 at 10:04 AM
+// @Copyright:  Copyright (c) 2022 Byrne-Systems
 
 #ifndef step_colors_hpp
 #define step_colors_hpp

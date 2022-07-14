@@ -1,8 +1,8 @@
-// @File: 		angle.hpp
-// @Project: 	Entity Simulation
-// @Author:		Justin Byrne
-// @Date:		Created 6/23/22 at 1:46 PM
-// @Copyright:	Copyright (c) 2022 Byrne-Systems
+// @File:       angle.hpp
+// @Project:    Entity Simulation
+// @Author:     Justin Byrne
+// @Date:       Created 6/23/22 at 1:46 PM
+// @Copyright:  Copyright (c) 2022 Byrne-Systems
 
 #ifndef angle_hpp
 #define angle_hpp
