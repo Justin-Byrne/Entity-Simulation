@@ -35,6 +35,7 @@
 #include "common/structs/general/angle.hpp"
 #include "common/structs/general/point.hpp"
 #include "common/structs/general/color.hpp"
+#include "common/structs/general/cell.hpp"
 
 // . . . . . . . . . . . . . . . . . . . . . . . . //
 // . STATIC  . . . . . . . . . . . . . . . . . . . //
@@ -49,6 +50,7 @@
 
 #include "utilities/general/RNG.hpp"
 #include "utilities/general/display.hpp"
+#include "utilities/general/uniform_grid.hpp"
 
 // . . . . . . . . . . . . . . . . . . . . . . . . //
 // . UTILITIES (RENDERER)   . . . . . . . . . . .  //

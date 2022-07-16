@@ -15,7 +15,7 @@
 
 int random_value ( int lower, int upper );
 
-std::map<int, int> hash =
+std::map<int, int> step_divisor =
 {
     {   1,  1 }, {   2,  1 }, {   3,  1 }, {   4,  1 },
     {   5,  2 }, {   6,  2 }, {   7,  2 }, {   8,  2 }, {   9,  2 }, {  10,  2 },
@@ -199,7 +199,7 @@ private:
     
     int get_step_divisor ( int degree_distance )
     {
-        return hash [ degree_distance ];
+        return step_divisor [ degree_distance ];
     }
     
     // . . . . . . . . . . . . . . . . . . . . . . . . //

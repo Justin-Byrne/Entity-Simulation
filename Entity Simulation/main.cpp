@@ -5,6 +5,7 @@
 // @Copyright:  Copyright (c) 2022 Byrne-Systems
 
 #include <SFML/Graphics.hpp>
+#include <unordered_map>
 
 #include "include/headers.hpp"
 
@@ -18,8 +19,11 @@ POINT rotate_origin, rotate_destination;
 
 sf::Color * step_colors = generate_step_colors ( 255, true );
 
+std::unordered_map<std::string, CELL> grid;
+
 #pragma mark - GLOBAL FUNCTION DECLARATIONS
 
+int seed_randomizer        ( );
 int init_window            ( );
 int populate_with_entities ( int pad_entities = 0 );
 
@@ -27,14 +31,24 @@ int populate_with_entities ( int pad_entities = 0 );
 
 int main ( int argc, const char * argv[] )
 {
+    seed_randomizer ( );
+    
     init_window ( );
   
     populate_with_entities ( 50 );
     
+    #if DEBUG_UNIFORM_GRID
+    UNIFORM_GRID::generate ( );
+    #endif
+    
     while ( window.isOpen ( ) )                                                 // Simulation Loop
     {
-        window.clear ( colors::gray_charcoal );                                 // Clear screen
+        window.clear ( colors::gray_dark );                                     // Clear screen
  
+        #if DEBUG_UNIFORM_GRID
+        UNIFORM_GRID::display ( );
+        #endif
+        
         for ( int i = 0; i < ENTITY_MAX; i++ )
         {
             switch ( entity[i].state )
@@ -79,6 +93,10 @@ int main ( int argc, const char * argv[] )
             #if DEBUG_STEPS
             DISPLAY::steps ( entity[i] );
             #endif
+            
+            #if DEBUG_UNIFORM_GRID
+            DISPLAY::grid_location ( entity[i] );
+            #endif
         }
         
         window.display ( );                                                     // Update the window
@@ -92,9 +110,16 @@ int main ( int argc, const char * argv[] )
     return EXIT_SUCCESS;
 }
 
+int seed_randomizer ( )
+{
+    srand ( ( unsigned ) time ( NULL ) );
+    
+    return EXIT_SUCCESS;
+}
+
 int init_window ( )
 {
-    window.create(sf::VideoMode ( WINDOW_WIDTH, WINDOW_HEIGHT ), WINDOW_TITLE);
+    window.create ( sf::VideoMode ( WINDOW_WIDTH, WINDOW_HEIGHT ), WINDOW_TITLE );
     
     window.setFramerateLimit ( FRAME_RATE );
     

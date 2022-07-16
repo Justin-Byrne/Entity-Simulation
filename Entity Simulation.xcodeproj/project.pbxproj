@@ -300,7 +300,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/sfml/2.5.1_1/lib,
-					"$(SRCROOT)/libs/SFML",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -318,7 +317,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/sfml/2.5.1_1/lib,
-					"$(SRCROOT)/libs/SFML",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

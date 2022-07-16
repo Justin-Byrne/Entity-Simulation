@@ -27,12 +27,16 @@ struct ENTITY
     
     ATTRIBUTES attributes;
     
+    std::string grid_location;
+    
     // Constructors ......................................................... //
     
     ENTITY ( POINT origin )
     {
         this->origin = origin;
         this->id     = ID++;
+        
+        this->update_grid_location ( );
     }
     
     ENTITY ( POINT origin, int angle_a, int angle_b )
@@ -44,6 +48,7 @@ struct ENTITY
         this->angle.b = angle_b;
         
         this->angle.init ( );
+        this->update_grid_location ( );
     }
     
     // . . . . . . . . . . . . . . . . . . . . . . . . //
@@ -63,14 +68,12 @@ struct ENTITY
     void set_walk ( int steps = 2 )
     {
         this->state = MOVING;
-        
         this->walk  = steps;
     }
     
     void set_angle ( int angle_a, int angle_b )
     {
         this->state = SILENT;
-        
         this->angle = { angle_a, angle_b };
     }
     
@@ -104,7 +107,9 @@ struct ENTITY
         
         this->walk--;
         
-        check_boundary ( );
+        this->check_boundary ( );
+        
+        this->update_grid_location ( );
     }
     
     // . . . . . . . . . . . . . . . . . . . . . . . . //
@@ -141,6 +146,14 @@ private:
             this->steps[i] = this->steps[i - 1];
         
         this->steps[0] = this->origin;
+    }
+    
+    void update_grid_location ( )
+    {
+        int column = std::floor ( this->origin.x / CELL_SIZE );
+        int row    = std::floor ( this->origin.y / CELL_SIZE );
+        
+        this->grid_location = std::string ( ) + std::to_string ( row ) + ", " + std::to_string ( column );
     }
 };
 

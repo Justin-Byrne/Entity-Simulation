@@ -24,9 +24,26 @@ namespace SFML
         result.setRadius           ( radius );
         result.setOrigin           ( result.getRadius ( ), result.getRadius ( ) );    // WARNING: Could cause issues with graphical translations !
         result.setOutlineColor     ( stroke );
-        result.setFillColor        ( fill );
         result.setOutlineThickness ( stroke_size );
+        result.setFillColor        ( fill );
         result.setPosition         ( point.x, point.y );
+        
+        return result;
+    }
+
+    // . . . . . . . . . . . . . . . . . . . . . . . . //
+    // . RECTANGLE . . . . . . . . . . . . . . . . . . //
+    // . . . . . . . . . . . . . . . . . . . . . . . . //
+
+    sf::RectangleShape create_rectangle ( POINT position, POINT dimensions, sf::Color stroke, int stroke_size, sf::Color fill )
+    {
+        sf::RectangleShape result;
+        
+        result.setSize             ( sf::Vector2f ( dimensions.x, dimensions.y ) );
+        result.setOutlineColor     ( stroke );
+        result.setOutlineThickness ( stroke_size );
+        result.setFillColor        ( fill );
+        result.setPosition         ( position.x, position.y );
         
         return result;
     }
@@ -42,6 +59,19 @@ namespace SFML
         sf::CircleShape circle = create_circle ( point, radius, stroke, stroke_size, fill );
         
         window.draw ( circle );
+        
+        return EXIT_SUCCESS;
+    }
+
+    // . . . . . . . . . . . . . . . . . . . . . . . . //
+    // . RECTANGLE . . . . . . . . . . . . . . . . . . //
+    // . . . . . . . . . . . . . . . . . . . . . . . . //
+
+    int render_rectangle ( sf::RenderTarget & window, POINT position, POINT dimensions, sf::Color stroke, int stroke_size, sf::Color fill )
+    {
+        sf::RectangleShape rectangle = create_rectangle ( position, dimensions, stroke, stroke_size, fill );
+        
+        window.draw ( rectangle );
         
         return EXIT_SUCCESS;
     }

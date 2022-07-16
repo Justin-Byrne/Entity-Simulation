@@ -16,6 +16,8 @@ extern POINT rotate_destination;
 extern sf::RenderWindow window;
 extern sf::Color      * step_colors;
 
+extern std::unordered_map<std::string, CELL> grid;
+
 namespace DISPLAY
 {
     int rotation ( ENTITY & entity, COLOR color = { colors::red_apple, colors::red } )
@@ -65,6 +67,13 @@ namespace DISPLAY
             };
         
         window.draw ( entity_steps );
+        
+        return EXIT_SUCCESS;
+    }
+
+    int grid_location ( ENTITY & entity )
+    {
+        grid [ entity.grid_location ].activate ( );
         
         return EXIT_SUCCESS;
     }

@@ -13,4 +13,6 @@
 
 #define COS ( x ) cos ( x * PI / 180 )
 
+#define GRID_SIZE ( WINDOW_WIDTH + WINDOW_HEIGHT / CELL_SIZE )
+
 #endif /* math_hpp */

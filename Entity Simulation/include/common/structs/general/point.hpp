@@ -11,7 +11,9 @@
 
 struct POINT
 {
-    float x, y, z;
+    float x = 0.0;
+    float y = 0.0;
+    float z = 0.0;
     
     // Constructors ......................................................... //
     
@@ -42,7 +44,7 @@ struct POINT
     // . GETTERS . . . . . . . . . . . . . . . . . . . //
     // . . . . . . . . . . . . . . . . . . . . . . . . //
         
-    double get_distance_from ( POINT & one, POINT & two ) 
+    double get_distance_from ( POINT & one, POINT & two )
     {
         return std::sqrt ( ( one.x - two.x ) * ( one.x - two.x ) +
                            ( one.y - two.y ) * ( one.y - two.y ) );

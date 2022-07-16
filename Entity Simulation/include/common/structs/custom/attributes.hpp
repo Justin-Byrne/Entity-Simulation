@@ -9,8 +9,6 @@
 
 #include "../../../utilities/general/RNG.hpp"
 
-//#include <random>       // TODO: MOVE TO RNG.HPP
-
 struct ATTRIBUTES
 {
     int vitality;

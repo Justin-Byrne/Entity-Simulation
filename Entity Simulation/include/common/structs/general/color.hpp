@@ -20,6 +20,8 @@ struct COLOR
     sf::Color origin      = colors::null;
     sf::Color destination = colors::null;
     
+    // Constructors ......................................................... //
+    
     COLOR ( sf::Color one, sf::Color two )
     {
         this->one    = one;
@@ -30,6 +32,10 @@ struct COLOR
         this->fill        = two;
         this->destination = two;
     }
+    
+    // . . . . . . . . . . . . . . . . . . . . . . . . //
+    // . CONSTRUCTORS (GENERIC) . . . . . . . . . . .  //
+    // . . . . . . . . . . . . . . . . . . . . . . . . //
     
     COLOR ( )  { }
     
