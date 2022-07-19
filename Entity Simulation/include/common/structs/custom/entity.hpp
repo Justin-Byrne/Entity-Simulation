@@ -95,6 +95,16 @@ struct ENTITY
         return ANGLE().rotate ( this->origin, degree, step_length );
     }
     
+    int get_matrix_row ( )
+    {
+        return this->matrix.row;
+    }
+    
+    int get_matrix_column ( )
+    {
+        return this->matrix.column;
+    }
+    
     // . . . . . . . . . . . . . . . . . . . . . . . . //
     // . ITERATORS . . . . . . . . . . . . . . . . . . //
     // . . . . . . . . . . . . . . . . . . . . . . . . //
@@ -150,11 +160,18 @@ private:
     
     void update_grid_location ( )
     {
-        int column = std::floor ( this->origin.x / CELL_SIZE );
-        int row    = std::floor ( this->origin.y / CELL_SIZE );
+        this->matrix.row    = std::floor ( this->origin.y / CELL_SIZE );
+        this->matrix.column = std::floor ( this->origin.x / CELL_SIZE );
         
-        this->grid_location = std::string ( ) + std::to_string ( row ) + ", " + std::to_string ( column );
+        this->grid_location = std::string ( ) + std::to_string ( this->matrix.row ) + ", " + std::to_string ( this->matrix.column );
     }
+    
+    struct MATRIX
+    {
+        int row    = 0;
+        int column = 0;
+    }
+    matrix;
 };
 
 int ENTITY::ID;

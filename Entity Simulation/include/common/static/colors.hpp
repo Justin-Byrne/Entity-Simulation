@@ -26,6 +26,10 @@ namespace colors
     sf::Color gray_dark      = {  44,  46,  52 };
     sf::Color black          = {   0,   0,   0 };
 
+    sf::Color grid_a         = {  31,  70, 111 };
+    sf::Color grid_b         = {  31,  91, 111 };
+    sf::Color grid_c         = { 246, 225,   0 };
+
     sf::Color transparent    = sf::Color::Transparent;
     sf::Color null           = sf::Color::Transparent;
 }

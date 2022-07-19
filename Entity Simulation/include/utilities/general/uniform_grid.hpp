@@ -18,27 +18,28 @@ namespace UNIFORM_GRID
         for ( int i = 0; ( i * CELL_SIZE ) < WINDOW_HEIGHT; i++ )
             for ( int j = 0; ( j * CELL_SIZE ) < WINDOW_WIDTH; j++ )
                 grid.insert (
-                    std::pair<std::string, CELL> (
-                        std::string ( ) + std::to_string ( i ) + ", " + std::to_string ( j ),
-                        CELL ( i, j, CELL_SIZE ) ) );
+                    std::pair<std::string, CELL>
+                        (
+                            std::string ( ) + std::to_string ( i ) + ", " + std::to_string ( j ),
+                            CELL ( i, j, CELL_SIZE )
+                        )
+                    );
         
         return EXIT_SUCCESS;
     }
 
-    int reset ( )
+    int draw_n_reset ( CELL & cell )
     {
-        for ( auto & cell : grid )
-            cell.second.shape.setFillColor ( colors::transparent );
-        
+        window.draw ( cell.shape );
+        cell.shape.setFillColor ( colors::transparent );
+
         return EXIT_SUCCESS;
     }
 
     int display ( )
     {
         for ( auto & cell : grid )
-            window.draw ( cell.second.shape );
-        
-        reset ( );
+            draw_n_reset ( cell.second );
         
         return EXIT_SUCCESS;
     }

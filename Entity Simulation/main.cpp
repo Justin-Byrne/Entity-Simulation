@@ -55,20 +55,20 @@ int main ( int argc, const char * argv[] )
             {
                 case SILENT:
                 case ROTATE:
-                    
+
                     #if DEBUG_ROTATE
                     DISPLAY::rotation ( entity[i] );
                     #endif
-                    
+
                     ( entity[i].angle.clockwise ) ? entity[i].angle.advance ( ) : entity[i].angle.regress ( );
-                    
+
                     if ( entity[i].angle.distance == 0 )
                         entity[i].set_walk ( RNG::get_random ( 1, 30 ) );
-                    
+
                     break;
-                    
+
                 case MOVING:
-                    
+
                     entity[i].next_step ( 2 );
 
                     if ( entity[i].walk == 0 )
@@ -76,24 +76,24 @@ int main ( int argc, const char * argv[] )
 
                     break;
             }
-            
+
             #if DEBUG_BODY
             DISPLAY::body ( entity[i] );
             #endif
-            
+
             #if DEBUG_SENSE
             DISPLAY::sense( entity[i] );
             #endif
-            
+
             #if DEBUG_SIGHTLINE
             for ( int j = 1; j < ENTITY_MAX; j++ )
                 DISPLAY::sightline ( entity[i], entity[j] );
             #endif
-            
+
             #if DEBUG_STEPS
             DISPLAY::steps ( entity[i] );
             #endif
-            
+
             #if DEBUG_UNIFORM_GRID
             DISPLAY::grid_location ( entity[i] );
             #endif

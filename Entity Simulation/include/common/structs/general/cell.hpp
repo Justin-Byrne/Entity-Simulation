@@ -41,7 +41,7 @@ struct CELL
                                   this->start,
                                   POINT { this->size, this->size },
                                   colors::gray_dark,
-                                  1,
+                                  0,
                                   colors::transparent
                               );
     }
@@ -64,7 +64,7 @@ struct CELL
         return this->matrix.column;
     }
     
-    void activate ( sf::Color color = colors::blue_dream )
+    void activate ( sf::Color color = colors::grid_a )
     {
         this->shape.setFillColor ( color );
     }
