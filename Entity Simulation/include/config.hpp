@@ -11,17 +11,18 @@
 
 // DEBUG
 #define DEBUG_ROTATE                   0
-#define DEBUG_BODY                     0
-#define DEBUG_SENSE                    0
+#define DEBUG_BODY                     1
+#define DEBUG_SENSE                    1
 #define DEBUG_SIGHTLINE                1
 #define DEBUG_STEPS                    0
 #define DEBUG_UNIFORM_GRID             0
+#define DEBUG_ENTITY_PRINT_ATTRIBUTES  0
 
 // PROGRAM
 #define WINDOW_TITLE "Entity Simulation"
-#define WINDOW_WIDTH                 800
-#define WINDOW_HEIGHT                800
-#define ENTITY_MAX                   800
+#define WINDOW_WIDTH                1200
+#define WINDOW_HEIGHT               1200
+#define ENTITY_MAX                   100
 #define STEP_MAX                      25
 #define LINE_SEGMENTS                  5
 #define FRAME_RATE                    30

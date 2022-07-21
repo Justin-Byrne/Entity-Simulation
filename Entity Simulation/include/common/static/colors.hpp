@@ -30,6 +30,14 @@ namespace colors
     sf::Color grid_b         = {  31,  91, 111 };
     sf::Color grid_c         = { 246, 225,   0 };
 
+    sf::Color sense_a        = { 237, 235,  78 };
+    sf::Color sense_b        = { 161, 160,  56 };
+    sf::Color sense_c        = { 122, 121,  49 };
+
+    sf::Color body_a         = {  94, 211, 250 };
+    sf::Color body_b         = {  65, 144, 171 };
+    sf::Color body_c         = {  54, 111, 131 };
+
     sf::Color transparent    = sf::Color::Transparent;
     sf::Color null           = sf::Color::Transparent;
 }

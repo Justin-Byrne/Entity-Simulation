@@ -139,6 +139,10 @@ int populate_with_entities ( int pad_entities )
             RNG::get_random ( 0, 360 ),
             RNG::get_random ( 0, 360 )
         };
+        
+        #if DEBUG_ENTITY_PRINT_ATTRIBUTES
+        entity[i].print_attributes ( );
+        #endif
     }
     
     return EXIT_SUCCESS;

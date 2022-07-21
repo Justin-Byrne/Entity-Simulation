@@ -8,6 +8,7 @@
 #define attributes_hpp
 
 #include "../../../utilities/general/RNG.hpp"
+#include "../../../utilities/general/range.hpp"
 
 struct ATTRIBUTES
 {
@@ -22,6 +23,8 @@ struct ATTRIBUTES
     int stamina;
     int stamina_refactor;
     
+    int mean, standard_deviation;
+    
     // Constructors ......................................................... //
     
     ATTRIBUTES ( )
@@ -35,16 +38,15 @@ struct ATTRIBUTES
         // . . . . . . . . . . . . . . . . . . . . . . . . //
         // . DISTRIBUTE TO SLAVE ATTRIBUTES  . . . . . . . //
         // . . . . . . . . . . . . . . . . . . . . . . . . //
-        
-        // TODO: FIX THIS SHIT FOR SIZE & SENSE !!!
-        int mean               = ( this->vitality < 5 ) ? this->vitality : this->vitality * 0.1;
-        int standard_deviation = ( this->vitality < 2 ) ? this->vitality : this->vitality * 0.2;
+
+        this->mean               = normalize_value ( this->vitality, 50 );
+        this->standard_deviation = normalize_value ( this->vitality, 20 );
         
         this->size = RNG::get_distributed ( mean, standard_deviation );
         
         do
             this->sense = RNG::get_distributed ( mean, standard_deviation );
-        while ( this->sense < this->size );
+        while ( this->sense <= this->size );
         
         this->health           = RNG::get_distributed ( mean, standard_deviation );
         this->walk_speed       = RNG::get_distributed ( mean, standard_deviation );

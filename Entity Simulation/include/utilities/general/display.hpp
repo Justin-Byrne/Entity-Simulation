@@ -38,14 +38,14 @@ namespace DISPLAY
         return EXIT_SUCCESS;
     }
 
-    int body ( ENTITY & entity, COLOR color = { colors::blue_baby,  colors::transparent } )
+    int body ( ENTITY & entity, COLOR color = { colors::body_a,  colors::transparent } )
     {
         SFML::render_circle ( window, entity.origin, entity.attributes.size, color.stroke, 1, color.fill );
         
         return EXIT_SUCCESS;
     }
 
-    int sense ( ENTITY & entity, COLOR color = { colors::yellow_sun, colors::transparent } )
+    int sense ( ENTITY & entity, COLOR color = { colors::sense_c, colors::transparent } )
     {
         SFML::render_circle ( window, entity.origin, entity.attributes.sense, color.stroke, 1, color.fill );
         

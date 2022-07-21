@@ -51,6 +51,7 @@
 #include "utilities/general/RNG.hpp"
 #include "utilities/general/display.hpp"
 #include "utilities/general/uniform_grid.hpp"
+#include "utilities/general/range.hpp"
 
 // . . . . . . . . . . . . . . . . . . . . . . . . //
 // . UTILITIES (RENDERER)   . . . . . . . . . . .  //

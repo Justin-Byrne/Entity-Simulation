@@ -142,6 +142,39 @@ struct ENTITY
         return ( distance <= entity.attributes.size ) ? true : false;
     }
     
+    // . . . . . . . . . . . . . . . . . . . . . . . . //
+    // . MISC . . . . . . . . . . . . . . . . . . . .  //
+    // . . . . . . . . . . . . . . . . . . . . . . . . //
+    
+    void print_attributes ( )
+    {
+        std::string OUTPUT = std::string ( ) +
+            "Entity: \t\t\t%d\n"             +
+            "----------------------------\n" +
+            "Vitality: \t\t\t%d <<<\n"       +
+            "----------------------------\n" +
+            "Size: \t\t\t\t%d\n"             +
+            "Sense:\t\t\t\t%d\n"             +
+            "Health: \t\t\t%d\n"             +
+            "Walk Speed: \t\t%d\n"           +
+            "Walk Distance: \t\t%d\n"        +
+            "Stamina: \t\t\t%d\n"            +
+            "Stamina Refactor: \t%d\n\n";
+        
+        printf (
+                OUTPUT.c_str ( ),
+                this->id,
+                attributes.vitality,
+                attributes.size,
+                attributes.sense,
+                attributes.health,
+                attributes.walk_speed,
+                attributes.walk_distance,
+                attributes.stamina,
+                attributes.stamina_refactor
+        );
+    }
+    
 private:
     
     // Functions ............................................................ //
