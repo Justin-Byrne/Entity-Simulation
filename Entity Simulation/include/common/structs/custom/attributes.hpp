@@ -8,54 +8,54 @@
 #define attributes_hpp
 
 #include "../../../utilities/general/RNG.hpp"
-#include "../../../utilities/general/range.hpp"
+#include "../../../utilities/general/scale.hpp"
+
+struct CAPS
+{
+    int size;
+    int sense;
+    
+}
+caps;
 
 struct ATTRIBUTES
 {
     int vitality;
-    
+
     int size;
     int sense;
-    
     int health;
     int walk_speed;
     int walk_distance;
     int stamina;
     int stamina_refactor;
     
-    int mean, standard_deviation;
-    
     // Constructors ......................................................... //
     
     ATTRIBUTES ( )
     {
-        // . . . . . . . . . . . . . . . . . . . . . . . . //
-        // . SET MASTER ATTRIBUTE  . . . . . . . . . . . . //
-        // . . . . . . . . . . . . . . . . . . . . . . . . //
-        
-        this->vitality = RNG::get_distributed ( 50, 20 );
-        
-        // . . . . . . . . . . . . . . . . . . . . . . . . //
-        // . DISTRIBUTE TO SLAVE ATTRIBUTES  . . . . . . . //
-        // . . . . . . . . . . . . . . . . . . . . . . . . //
+        this->vitality = RNG::get_distributed ( this->mean, this->stddev );
 
-        this->mean               = normalize_value ( this->vitality, 50 );
-        this->standard_deviation = normalize_value ( this->vitality, 20 );
-        
-        this->size = RNG::get_distributed ( mean, standard_deviation );
-        
-        do
-            this->sense = RNG::get_distributed ( mean, standard_deviation );
-        while ( this->sense <= this->size );
-        
-        this->health           = RNG::get_distributed ( mean, standard_deviation );
-        this->walk_speed       = RNG::get_distributed ( mean, standard_deviation );
-        this->walk_distance    = RNG::get_distributed ( mean, standard_deviation );
-        this->stamina          = RNG::get_distributed ( mean, standard_deviation );
-        this->stamina_refactor = RNG::get_distributed ( mean, standard_deviation );
+        this->scale ( );
     }
     
     ~ATTRIBUTES ( ) { };
+    
+private:
+
+    int mean   = 50;
+    int stddev = 20;
+    
+    void scale ( )
+    {
+        this->size             = scale_to ( this->vitality, SIZE_CAP             );
+        this->sense            = scale_to ( this->vitality, SENSE_CAP            );
+        this->health           = scale_to ( this->vitality, HEALTH_CAP           );
+        this->walk_speed       = scale_to ( this->vitality, WALK_SPEED_CAP       );
+        this->walk_distance    = scale_to ( this->vitality, WALK_DISTANCE_CAP    );
+        this->stamina          = scale_to ( this->vitality, STAMINA_CAP          );
+        this->stamina_refactor = scale_to ( this->vitality, STAMINA_REFACTOR_CAP );
+    }
 };
 
 #endif /* attributes_hpp */

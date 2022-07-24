@@ -51,7 +51,7 @@
 #include "utilities/general/RNG.hpp"
 #include "utilities/general/display.hpp"
 #include "utilities/general/uniform_grid.hpp"
-#include "utilities/general/range.hpp"
+#include "utilities/general/scale.hpp"
 
 // . . . . . . . . . . . . . . . . . . . . . . . . //
 // . UTILITIES (RENDERER)   . . . . . . . . . . .  //
@@ -64,5 +64,11 @@
 // . . . . . . . . . . . . . . . . . . . . . . . . //
 
 #include "utilities/specific/step_colors.hpp"
+
+// . . . . . . . . . . . . . . . . . . . . . . . . //
+// . SIMULATION . . . . . . . . . . . . . . . . .  //
+// . . . . . . . . . . . . . . . . . . . . . . . . //
+
+#include "simulation/simulation.hpp"
 
 #endif /* headers_hpp */

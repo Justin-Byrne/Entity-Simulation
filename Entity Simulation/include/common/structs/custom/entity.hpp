@@ -68,12 +68,14 @@ struct ENTITY
     void set_walk ( int steps = 2 )
     {
         this->state = MOVING;
-        this->walk  = steps;
+        
+        this->walk = steps;
     }
     
     void set_angle ( int angle_a, int angle_b )
     {
         this->state = SILENT;
+        
         this->angle = { angle_a, angle_b };
     }
     
@@ -109,13 +111,17 @@ struct ENTITY
     // . ITERATORS . . . . . . . . . . . . . . . . . . //
     // . . . . . . . . . . . . . . . . . . . . . . . . //
     
-    void next_step ( int step_size )
+    void next_step ( int step_size = 2 )
     {
+        step_size = this->attributes.walk_speed + step_size;
+        
+        #if DEBUG_STEPS
         this->cache_steps ( );
+        #endif
         
         this->origin = ANGLE().rotate ( this->origin, this->angle.a, step_size );
         
-        this->walk--;
+        this->walk = ( step_size > this->walk ) ? 0 : this->walk - step_size;
         
         this->check_boundary ( );
         
@@ -149,17 +155,17 @@ struct ENTITY
     void print_attributes ( )
     {
         std::string OUTPUT = std::string ( ) +
-            "Entity: \t\t\t%d\n"             +
+            "Entity:               %d\n"     +
             "----------------------------\n" +
-            "Vitality: \t\t\t%d <<<\n"       +
+            "Vitality:             %d <<<\n" +
             "----------------------------\n" +
-            "Size: \t\t\t\t%d\n"             +
-            "Sense:\t\t\t\t%d\n"             +
-            "Health: \t\t\t%d\n"             +
-            "Walk Speed: \t\t%d\n"           +
-            "Walk Distance: \t\t%d\n"        +
-            "Stamina: \t\t\t%d\n"            +
-            "Stamina Refactor: \t%d\n\n";
+            "Size:                 %d\n"     +
+            "Sense:                %d\n"     +
+            "Health:               %d\n"     +
+            "Walk Speed:           %d\n"     +
+            "Walk Distance:        %d\n"     +
+            "Stamina:              %d\n"     +
+            "Stamina Refactor:     %d\n\n";
         
         printf (
                 OUTPUT.c_str ( ),
