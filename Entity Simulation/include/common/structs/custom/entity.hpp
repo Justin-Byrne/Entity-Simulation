@@ -27,28 +27,22 @@ struct ENTITY
     // Constructors ......................................................... //
     
     ENTITY ( POINT origin )
+    : origin ( origin )
+    , id     ( ID++   )
     {
-        this->origin = origin;
-        this->id     = ID++;
-        
-        this->update_grid_location ( );
+        this->_update_grid_location ( );
     }
     
     ENTITY ( POINT origin, int angle_a, int angle_b )
+    : origin ( origin )
+    , id     ( ID++   )
     {
-        this->origin = origin;
-        this->id     = ID++;
-        
         this->angle.a = angle_a;
         this->angle.b = angle_b;
-        
-        this->angle.init ( );
-        this->update_grid_location ( );
-    }
     
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
-    // . CONSTRUCTORS (GENERIC) . . . . . . . . . . .  //
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
+        this->angle.init ( );
+        this->_update_grid_location ( );
+    }
     
     ENTITY  ( ) { };
 
@@ -60,11 +54,11 @@ struct ENTITY
     // . SETTERS . . . . . . . . . . . . . . . . . . . //
     // . . . . . . . . . . . . . . . . . . . . . . . . //
     
-    void set_walk ( int steps = 2 )
+    void set_walk ( int distance )
     {
         this->state = MOVING;
         
-        this->walk = steps;
+        this->walk  = distance;
     }
     
     void set_angle ( int angle_a, int angle_b )
@@ -94,53 +88,58 @@ struct ENTITY
     
     int get_matrix_row ( )
     {
-        return this->matrix.row;
+        return this->_matrix.row;
     }
     
     int get_matrix_column ( )
     {
-        return this->matrix.column;
+        return this->_matrix.column;
     }
     
     // . . . . . . . . . . . . . . . . . . . . . . . . //
     // . ITERATORS . . . . . . . . . . . . . . . . . . //
     // . . . . . . . . . . . . . . . . . . . . . . . . //
     
-    void next_step ( int step_size = 2 )
+    void next_step ( int step_size = 1 )
     {
-        step_size = this->attributes.walk_speed + step_size;
-        
         #if DEBUG_STEPS
-        this->cache_steps ( );
+        this->_cache_steps ( );
         #endif
         
-        this->origin = ANGLE().rotate ( this->origin, this->angle.a, step_size );
+        if ( this->_walk_gait < this->attributes.walk_speed )                   // increase _walk_gait
+             this->_walk_gait += 1;
         
-        this->walk = ( step_size > this->walk ) ? 0 : this->walk - step_size;
+        step_size     += this->_walk_gait;                                      // calculate step_size
         
-        this->check_boundary ( );
+        this->origin   = ANGLE().rotate ( this->origin, this->angle.a, step_size );
         
-        this->update_grid_location ( );
+        if ( step_size > this->walk )
+            this->walk = this->_walk_gait = 0;                                  // reset walk && _walk_gait
+        else
+            this->walk -= step_size;                                            // subtract step_size from walk
+        
+        this->_check_boundary ( );
+        
+        this->_update_grid_location ( );
     }
     
     // . . . . . . . . . . . . . . . . . . . . . . . . //
     // . VALIDATORS  . . . . . . . . . . . . . . . . . //
     // . . . . . . . . . . . . . . . . . . . . . . . . //
     
-    void check_boundary ( )
-    {
-        this->origin.x = ( this->origin.x <= 0 ) ? 1 : this->origin.x;                              // left
-        this->origin.y = ( this->origin.y <= 0 ) ? 1 : this->origin.y;                              // top
-        
-        this->origin.x = ( this->origin.x >= WINDOW_WIDTH  ) ? WINDOW_WIDTH  - 1 : this->origin.x;  // right
-        this->origin.y = ( this->origin.y >= WINDOW_HEIGHT ) ? WINDOW_HEIGHT - 1 : this->origin.y;  // bottom
-    }
-    
     bool is_inside_sense ( ENTITY & entity )
     {
         int distance = POINT().get_distance_from ( this->origin, entity.origin ) - this->attributes.sense;
         
         return ( distance <= entity.attributes.size ) ? true : false;
+    }
+    
+    bool check_entity_distance ( ENTITY & entity )
+    {
+        int diff_row    = std::abs ( this->_matrix.row    - entity.get_matrix_row    ( ) );
+        int diff_column = std::abs ( this->_matrix.column - entity.get_matrix_column ( ) );
+
+        return ( diff_row < 3 && diff_column < 3 ) ? true : false;
     }
     
     // . . . . . . . . . . . . . . . . . . . . . . . . //
@@ -178,13 +177,35 @@ struct ENTITY
     
 private:
     
+    int _walk_gait = 0;
+    
+    struct MATRIX
+    {
+        int row    = 0;
+        int column = 0;
+    }
+    _matrix;
+    
     // Functions ............................................................ //
 
+    // . . . . . . . . . . . . . . . . . . . . . . . . //
+    // . VALIDATORS  . . . . . . . . . . . . . . . . . //
+    // . . . . . . . . . . . . . . . . . . . . . . . . //
+    
+    void _check_boundary ( )
+    {
+        this->origin.x = ( this->origin.x <= 0 ) ? 1 : this->origin.x;                              // left
+        this->origin.y = ( this->origin.y <= 0 ) ? 1 : this->origin.y;                              // top
+        
+        this->origin.x = ( this->origin.x >= WINDOW_WIDTH  ) ? WINDOW_WIDTH  - 1 : this->origin.x;  // right
+        this->origin.y = ( this->origin.y >= WINDOW_HEIGHT ) ? WINDOW_HEIGHT - 1 : this->origin.y;  // bottom
+    }
+    
     // . . . . . . . . . . . . . . . . . . . . . . . . //
     // . MISC . . . . . . . . . . . . . . . . . . . .  //
     // . . . . . . . . . . . . . . . . . . . . . . . . //
     
-    void cache_steps ( )
+    void _cache_steps ( )
     {
         for ( int i = STEP_MAX - 1; i > 0; i-- )
             this->steps[i] = this->steps[i - 1];
@@ -192,20 +213,13 @@ private:
         this->steps[0] = this->origin;
     }
     
-    void update_grid_location ( )
+    void _update_grid_location ( )
     {
-        this->matrix.row    = std::floor ( this->origin.y / CELL_SIZE );
-        this->matrix.column = std::floor ( this->origin.x / CELL_SIZE );
+        this->_matrix.row    = std::floor ( this->origin.y / CELL_SIZE );
+        this->_matrix.column = std::floor ( this->origin.x / CELL_SIZE );
         
-        this->grid_location = std::string ( ) + std::to_string ( this->matrix.row ) + ", " + std::to_string ( this->matrix.column );
+        this->grid_location = std::string ( ) + std::to_string ( this->_matrix.row ) + ", " + std::to_string ( this->_matrix.column );
     }
-    
-    struct MATRIX
-    {
-        int row    = 0;
-        int column = 0;
-    }
-    matrix;
 };
 
 int ENTITY::ID;

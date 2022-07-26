@@ -26,19 +26,19 @@ struct ATTRIBUTES
     
     ATTRIBUTES ( )
     {
-        this->vitality = RNG::get_distributed ( this->mean, this->stddev );
+        this->vitality = RNG::get_distributed ( this->_mean, this->_stddev );
 
-        this->scale ( );
+        this->_scale ( );
     }
     
     ~ATTRIBUTES ( ) { };
     
 private:
 
-    int mean   = 50;
-    int stddev = 20;
+    int _mean   = 50;
+    int _stddev = 20;
     
-    void scale ( )
+    void _scale ( )
     {
         this->size             = scale_to ( this->vitality, SIZE_CAP             );
         this->sense            = scale_to ( this->vitality, SENSE_CAP            );

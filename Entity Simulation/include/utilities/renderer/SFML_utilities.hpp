@@ -97,7 +97,7 @@ namespace SFML
 
     int render_dotted_line ( sf::RenderWindow & window, POINT origin, POINT destination, int segments, sf::Color color )
     {
-        sf::Vertex lines[segments];
+        sf::Vertex line[segments];
         
         int line_space = POINT().get_distance_from ( origin, destination ) / segments;
         int angle      = ANGLE().get_angle ( origin, destination );
@@ -106,11 +106,11 @@ namespace SFML
         {
             origin = ANGLE().rotate ( origin, angle, line_space );
             
-            lines[i].position = sf::Vector2f ( origin.x, origin.y );
-            lines[i].color    = color;
+            line[i].position = sf::Vector2f ( origin.x, origin.y );
+            line[i].color    = color;
         }
         
-        window.draw ( lines, segments, sf::Points );
+        window.draw ( line, segments, sf::Points );
         
         return EXIT_SUCCESS;
     }

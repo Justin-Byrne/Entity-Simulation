@@ -18,7 +18,7 @@ struct SIMULATION
     
     int populate ( )
     {
-        this->add_entities ( );
+        this->_add_entities ( );
     
         #if DEBUG_UNIFORM_GRID
         UNIFORM_GRID::generate ( );
@@ -27,13 +27,12 @@ struct SIMULATION
         return EXIT_SUCCESS;
     }
     
-    
     int update ( )
     {
         for ( int i = 0; i < ENTITY_MAX; i++ )
         {
-            state_control ( this->entity[i] );
-            display_block ( this->entity[i] );
+            _state_control ( this->_entity[i] );
+            _display_block ( this->_entity[i] );
         }
         
         #if DEBUG_UNIFORM_GRID
@@ -45,7 +44,7 @@ struct SIMULATION
 
 private:
 
-    ENTITY entity[ENTITY_MAX];
+    ENTITY _entity[ENTITY_MAX];
     
     SIMULATION ( ) { };
     
@@ -53,11 +52,11 @@ private:
     
     SIMULATION & operator = ( const SIMULATION & );
     
-    int add_entities ( )
+    int _add_entities ( )
     {
         for ( int i = 0; i < ENTITY_MAX; i++ )
         {
-            this->entity[i] =
+            this->_entity[i] =
             {
                 POINT
                 {
@@ -69,14 +68,14 @@ private:
             };
     
             #if DEBUG_ENTITY_PRINT_ATTRIBUTES
-            this->entity[i].print_attributes ( );
+            this->_entity[i].print_attributes ( );
             #endif
         }
         
         return EXIT_SUCCESS;
     }
     
-    int state_control ( ENTITY & entity )
+    int _state_control ( ENTITY & entity )
     {
         switch ( entity.state )
         {
@@ -109,7 +108,7 @@ private:
         return EXIT_SUCCESS;
     }
     
-    int display_block ( ENTITY & entity )
+    int _display_block ( ENTITY & entity )
     {
         #if DEBUG_BODY
         DISPLAY::body ( entity );
@@ -121,7 +120,7 @@ private:
     
         #if DEBUG_SIGHTLINE
         for ( int i = 1; i < ENTITY_MAX; i++ )
-            DISPLAY::sightline ( entity, this->entity[i] );
+            DISPLAY::sightline ( entity, this->_entity[i] );
         #endif
     
         #if DEBUG_STEPS

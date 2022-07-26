@@ -9,15 +9,17 @@
 
 #include "../../utilities/renderer/SFML_utilities.hpp"
 
-extern POINT rotate_origin;
-extern POINT rotate_destination;
-
 extern sf::RenderWindow window;
-extern sf::Color      * step_colors;
 
-extern std::unordered_map<std::string, CELL> grid;
+extern sf::Color * generate_step_colors ( sf::Uint8 top_color, bool invert );
 
-int neighboring_cells[8][2] =
+POINT rotate_origin, rotate_destination;
+
+sf::Color * step_colors = generate_step_colors ( 255, true );
+
+std::unordered_map<std::string, CELL> grid;
+
+const int neighboring_cells[8][2] =
 {
     { -1, -1 }, { -1,  0 }, { -1,  1 },
     {  0, -1 },             {  0,  1 },
@@ -53,10 +55,7 @@ namespace DISPLAY
 
     int sightline ( ENTITY & entity_a, ENTITY & entity_b, COLOR color = { colors::yellow_sun, colors::transparent } )
     {
-        int diff_row    = std::abs ( entity_a.get_matrix_row    ( ) - entity_b.get_matrix_row    ( ) );
-        int diff_column = std::abs ( entity_a.get_matrix_column ( ) - entity_b.get_matrix_column ( ) );
-
-        if ( diff_row < 3 && diff_column < 3 )
+        if ( entity_a.check_entity_distance( entity_b ) )
         {
             if ( entity_a.is_inside_sense ( entity_b ) )
                 SFML::render_dotted_line ( window, entity_a.origin, entity_b.origin, LINE_SEGMENTS, colors::red );

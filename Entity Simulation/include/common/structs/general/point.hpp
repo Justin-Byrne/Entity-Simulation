@@ -18,17 +18,15 @@ struct POINT
     // Constructors ......................................................... //
     
     POINT ( float x, float y )
-    {
-        this->x = x;
-        this->y = y;
-    }
+    : x ( x )
+    , y ( y )
+    { }
     
     POINT ( float x, float y, float z )
-    {
-        this->x = x;
-        this->y = y;
-        this->z = z;
-    }
+    : x ( x )
+    , y ( y )
+    , z ( z )
+    { }
     
     // . . . . . . . . . . . . . . . . . . . . . . . . //
     // . CONSTRUCTORS (GENERIC) . . . . . . . . . . .  //

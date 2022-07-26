@@ -9,21 +9,12 @@
 
 #include "include/headers.hpp"
 
-#pragma mark - GLOBAL VARIABLE DECLARATIONS
-
 sf::RenderWindow window;
-
-POINT rotate_origin, rotate_destination;
-
-sf::Color * step_colors = generate_step_colors ( 255, true );
-
-std::unordered_map<std::string, CELL> grid;
-
-#pragma mark - MAIN
 
 int main ( int argc, const char * argv[] )
 {
     srand ( ( unsigned ) time ( NULL ) );                                       // Seed Randomizer
+    
     
     window.create ( sf::VideoMode ( WINDOW_WIDTH, WINDOW_HEIGHT ), WINDOW_TITLE );
     

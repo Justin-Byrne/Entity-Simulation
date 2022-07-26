@@ -11,10 +11,10 @@
 
 // DEBUG
 #define DEBUG_ROTATE                   0
-#define DEBUG_BODY                     1
+#define DEBUG_BODY                     0
 #define DEBUG_SENSE                    0
-#define DEBUG_SIGHTLINE                0
-#define DEBUG_STEPS                    1
+#define DEBUG_SIGHTLINE                1
+#define DEBUG_STEPS                    0
 #define DEBUG_UNIFORM_GRID             0
 #define DEBUG_ENTITY_PRINT_ATTRIBUTES  0
 
@@ -22,8 +22,8 @@
 #define SIZE_CAP             		  10
 #define SENSE_CAP            		  40
 #define HEALTH_CAP           		  20
-#define WALK_SPEED_CAP        		   5
-#define WALK_DISTANCE_CAP    		  50
+#define WALK_SPEED_CAP        		  20
+#define WALK_DISTANCE_CAP    		  70
 #define STAMINA_CAP          		  20
 #define STAMINA_REFACTOR_CAP 	      10
 

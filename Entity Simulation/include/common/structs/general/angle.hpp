@@ -40,16 +40,11 @@ struct ANGLE
     // Constructors ......................................................... //
     
     ANGLE ( int A, int B )
+    : a ( A )
+    , b ( B )
     {
-        this->a = std::clamp ( A, this->MIN, this->MAX );
-        this->b = std::clamp ( B, this->MIN, this->MAX );
-
         this->init ( );
     }
-    
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
-    // . CONSTRUCTORS (GENERIC) . . . . . . . . . . .  //
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
     
     ANGLE  ( ) { }
     
@@ -63,8 +58,8 @@ struct ANGLE
     
     void init ( )
     {
-        this->set_clockwise ( );
-        this->set_distance  ( );
+        this->_set_clockwise ( );
+        this->_set_distance  ( );
     }
     
     // . . . . . . . . . . . . . . . . . . . . . . . . //
@@ -107,28 +102,28 @@ struct ANGLE
     
     void advance ( )    // counter clockwise || right
     {
-        this->set_step ( );
+        this->_set_step ( );
 
-        this->validate_step_v_distance ( );
+        this->_validate_step_v_distance ( );
         
         this->a = ( ( this->a + this->step ) > 360 )
                     ? this->step - ( 360 - this->a )
                     : this->a + this->step;
         
-        this->decrement_distance ( );
+        this->_decrement_distance ( );
     }
     
     void regress ( )    // clockwise         || left
     {
-        this->set_step ( );
+        this->_set_step ( );
 
-        this->validate_step_v_distance ( );
+        this->_validate_step_v_distance ( );
         
         this->a = ( ( this->a - this->step ) < 0 )
                     ? 360 - ( this->step - this->a )
                     : this->a - this->step;
         
-        this->decrement_distance ( );
+        this->_decrement_distance ( );
     }
     
     // . . . . . . . . . . . . . . . . . . . . . . . . //
@@ -155,12 +150,12 @@ private:
     // . SETTERS . . . . . . . . . . . . . . . . . . . //
     // . . . . . . . . . . . . . . . . . . . . . . . . //
     
-    void set_step ( )
+    void _set_step ( )
     {
-        this->step = ( this->step == -1 ) ? this->get_step_divisor ( this->distance ) : this->step;
+        this->step = ( this->step == -1 ) ? this->_get_step_divisor ( this->distance ) : this->step;
     }
 
-    void set_distance ( )
+    void _set_distance ( )
     {
         int raw_difference = ( this->a > this->b )
                                 ? this->a - this->b
@@ -173,7 +168,7 @@ private:
                                 : mod_difference;
     }
     
-    void set_clockwise ( )
+    void _set_clockwise ( )
     {
         int distance  = this->b % MAX - this->a % MAX;
         
@@ -194,7 +189,7 @@ private:
     // . GETTERS . . . . . . . . . . . . . . . . . . . //
     // . . . . . . . . . . . . . . . . . . . . . . . . //
     
-    int get_step_divisor ( int degree_distance )
+    int _get_step_divisor ( int degree_distance )
     {
         return step_divisor [ degree_distance ];
     }
@@ -203,7 +198,7 @@ private:
     // . ITERATORS . . . . . . . . . . . . . . . . . . //
     // . . . . . . . . . . . . . . . . . . . . . . . . //
     
-    void decrement_distance ( )
+    void _decrement_distance ( )
     {
         this->distance = this->distance - this->step;
     }
@@ -212,7 +207,7 @@ private:
     // . VALIDATORS  . . . . . . . . . . . . . . . . . //
     // . . . . . . . . . . . . . . . . . . . . . . . . //
     
-    void validate_step_v_distance ( )
+    void _validate_step_v_distance ( )
     {
         if ( this->distance < this->step ) this->step = this->distance;
     }
