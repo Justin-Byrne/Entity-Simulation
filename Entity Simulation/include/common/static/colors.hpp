@@ -7,8 +7,6 @@
 #ifndef colors_hpp
 #define colors_hpp
 
-#include <SFML/Graphics/Color.hpp>
-
 namespace colors
 {
     sf::Color white          = { 255, 255, 255 };

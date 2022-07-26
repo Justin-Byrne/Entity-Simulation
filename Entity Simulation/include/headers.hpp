@@ -22,18 +22,11 @@
 #include "common/math/math.hpp"
 
 // . . . . . . . . . . . . . . . . . . . . . . . . //
-// . STRUCTS (CUSTOM) . . . . . . . . . . . . . .  //
-// . . . . . . . . . . . . . . . . . . . . . . . . //
-
-#include "common/structs/custom/attributes.hpp"
-#include "common/structs/custom/entity.hpp"
-
-// . . . . . . . . . . . . . . . . . . . . . . . . //
 // . STRUCTS (GENERAL)  . . . . . . . . . . . . .  //
 // . . . . . . . . . . . . . . . . . . . . . . . . //
 
-#include "common/structs/general/angle.hpp"
 #include "common/structs/general/point.hpp"
+#include "common/structs/general/angle.hpp"
 #include "common/structs/general/color.hpp"
 #include "common/structs/general/cell.hpp"
 
@@ -43,6 +36,13 @@
 
 #include "common/static/colors.hpp"
 #include "common/static/states.hpp"
+
+// . . . . . . . . . . . . . . . . . . . . . . . . //
+// . STRUCTS (CUSTOM) . . . . . . . . . . . . . .  //
+// . . . . . . . . . . . . . . . . . . . . . . . . //
+
+#include "common/structs/custom/attributes.hpp"
+#include "common/structs/custom/entity.hpp"
 
 // . . . . . . . . . . . . . . . . . . . . . . . . //
 // . UTILITIES (GENERAL)  . . . . . . . . . . . .  //

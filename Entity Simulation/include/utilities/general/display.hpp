@@ -1,4 +1,4 @@
-// @File:       debug.hpp
+// @File:       display.hpp
 // @Project:    Entity Simulation
 // @Author:     Justin Byrne
 // @Date:       Created 7/13/22 at 5:47 PM
@@ -8,7 +8,6 @@
 #define display_hpp
 
 #include "../../utilities/renderer/SFML_utilities.hpp"
-#include "../../config.hpp"
 
 extern POINT rotate_origin;
 extern POINT rotate_destination;

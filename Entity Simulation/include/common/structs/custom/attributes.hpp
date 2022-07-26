@@ -10,14 +10,6 @@
 #include "../../../utilities/general/RNG.hpp"
 #include "../../../utilities/general/scale.hpp"
 
-struct CAPS
-{
-    int size;
-    int sense;
-    
-}
-caps;
-
 struct ATTRIBUTES
 {
     int vitality;

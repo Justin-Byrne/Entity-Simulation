@@ -16,25 +16,9 @@ struct SIMULATION
         return simulation;
     };
     
-    int populate_with_entities ( int padding = 0 )
+    int populate ( )
     {
-        for ( int i = 0; i < ENTITY_MAX; i++ )
-        {
-            this->entity[i] =
-            {
-                POINT
-                {
-                    (float) RNG::get_random ( padding, WINDOW_WIDTH  - padding ),
-                    (float) RNG::get_random ( padding, WINDOW_HEIGHT - padding )
-                },
-                RNG::get_random ( 0, 360 ),
-                RNG::get_random ( 0, 360 )
-            };
-    
-            #if DEBUG_ENTITY_PRINT_ATTRIBUTES
-            this->entity[i].print_attributes ( );
-            #endif
-        }
+        this->add_entities ( );
     
         #if DEBUG_UNIFORM_GRID
         UNIFORM_GRID::generate ( );
@@ -42,6 +26,7 @@ struct SIMULATION
         
         return EXIT_SUCCESS;
     }
+    
     
     int update ( )
     {
@@ -62,11 +47,34 @@ private:
 
     ENTITY entity[ENTITY_MAX];
     
-    SIMULATION ( ) { };                                                         // Default
+    SIMULATION ( ) { };
     
-    SIMULATION ( const SIMULATION & );                                          // Copy
+    SIMULATION ( const SIMULATION & );
     
-    SIMULATION & operator = ( const SIMULATION & );                             // Copy Assignment
+    SIMULATION & operator = ( const SIMULATION & );
+    
+    int add_entities ( )
+    {
+        for ( int i = 0; i < ENTITY_MAX; i++ )
+        {
+            this->entity[i] =
+            {
+                POINT
+                {
+                    (float) RNG::get_random ( 0, WINDOW_WIDTH  ),
+                    (float) RNG::get_random ( 0, WINDOW_HEIGHT )
+                },
+                RNG::get_random ( 0, 360 ),
+                RNG::get_random ( 0, 360 )
+            };
+    
+            #if DEBUG_ENTITY_PRINT_ATTRIBUTES
+            this->entity[i].print_attributes ( );
+            #endif
+        }
+        
+        return EXIT_SUCCESS;
+    }
     
     int state_control ( ENTITY & entity )
     {
@@ -93,7 +101,7 @@ private:
                 entity.next_step ( );
     
                 if ( entity.walk == 0 )
-                    entity.set_angle ( entity.angle.b, RNG::get_random ( 0, 360 ) );
+                     entity.set_angle ( entity.angle.b, RNG::get_random ( 0, 360 ) );
     
                 break;
         }
@@ -113,7 +121,7 @@ private:
     
         #if DEBUG_SIGHTLINE
         for ( int i = 1; i < ENTITY_MAX; i++ )
-            DISPLAY::sightline ( entity, entity[i] );
+            DISPLAY::sightline ( entity, this->entity[i] );
         #endif
     
         #if DEBUG_STEPS

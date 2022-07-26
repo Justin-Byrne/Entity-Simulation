@@ -7,8 +7,6 @@
 #ifndef SFML_utilities_hpp
 #define SFML_utilities_hpp
 
-#include "../../common/structs/general/point.hpp"
-
 namespace SFML
 {
     // Create ............................................................... //

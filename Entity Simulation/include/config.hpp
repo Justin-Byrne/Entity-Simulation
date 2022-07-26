@@ -31,7 +31,7 @@
 #define WINDOW_TITLE "Entity Simulation"
 #define WINDOW_WIDTH                 800
 #define WINDOW_HEIGHT                800
-#define ENTITY_MAX                   200
+#define ENTITY_MAX                   900
 #define STEP_MAX                      50
 #define LINE_SEGMENTS                  5
 #define FRAME_RATE                    30

@@ -7,8 +7,6 @@
 #ifndef step_colors_hpp
 #define step_colors_hpp
 
-#include <SFML/Graphics/Color.hpp>
-
 sf::Color * generate_step_colors ( sf::Uint8 top_color, bool invert = false )
 {
     const  sf::Uint8 COLOR_MIN = 84;

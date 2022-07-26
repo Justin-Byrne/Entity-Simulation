@@ -7,8 +7,6 @@
 #ifndef cell_hpp
 #define cell_hpp
 
-#include "point.hpp"
-#include "../../../config.hpp"
 #include "../../../utilities/renderer/SFML_utilities.hpp"
 
 extern sf::RenderWindow window;

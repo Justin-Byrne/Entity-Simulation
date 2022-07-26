@@ -32,7 +32,7 @@ int main ( int argc, const char * argv[] )
     
     SIMULATION & simulation = SIMULATION::instance ( );
     
-    simulation.populate_with_entities ( 50 );
+    simulation.populate ( );
 
     
     while ( window.isOpen ( ) )                                                 // Simulation Loop

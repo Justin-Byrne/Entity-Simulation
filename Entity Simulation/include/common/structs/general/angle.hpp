@@ -10,10 +10,7 @@
 #include <map>
 #include <algorithm>
 
-#include "../../math/math.hpp"
-#include "../../structs/general/point.hpp"
-
-int random_value ( int lower, int upper );
+#include "../../../utilities/general/RNG.hpp"
 
 std::map<int, int> step_divisor =
 {

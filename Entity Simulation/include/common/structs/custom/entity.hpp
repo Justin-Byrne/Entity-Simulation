@@ -7,11 +7,6 @@
 #ifndef entity_hpp
 #define entity_hpp
 
-#include "../../static/states.hpp"
-#include "../../structs/general/point.hpp"
-#include "../../structs/general/angle.hpp"
-#include "../../structs/custom/attributes.hpp"
-
 struct ENTITY
 {
     int id;
