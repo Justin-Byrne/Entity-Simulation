@@ -7,9 +7,6 @@
 #ifndef angle_hpp
 #define angle_hpp
 
-#include <map>
-#include <algorithm>
-
 #include "../../../utilities/general/RNG.hpp"
 
 std::map<int, int> step_divisor =
@@ -52,9 +49,7 @@ struct ANGLE
     
     // Functions ............................................................ //
     
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
-    // . INITIALIZER . . . . . . . . . . . . . . . . . //
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
+    // . . . . . . . . . . . . . . . . . . . . . . . . . . [ INITIALIZER ]  . //
     
     void init ( )
     {
@@ -62,9 +57,7 @@ struct ANGLE
         this->_set_distance  ( );
     }
     
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
-    // . GETTERS . . . . . . . . . . . . . . . . . . . //
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
+    // . . . . . . . . . . . . . . . . . . . . . . . . . . . . [ GETTERS ]  . //
     
     POINT rotate ( POINT & origin, int & degree, int step = 0 )
     {
@@ -72,8 +65,8 @@ struct ANGLE
 
         double radians = convert_to_radian ( degree );
 
-        double sine    = sin ( radians );
-        double cosine  = cos ( radians );
+        double sine    = std::sin ( radians );
+        double cosine  = std::cos ( radians );
 
         point.x       -= origin.x;                                              // translate point back to origin
         point.y       -= origin.y;
@@ -96,11 +89,9 @@ struct ANGLE
         return result;
     }
     
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
-    // . ITERATORS . . . . . . . . . . . . . . . . . . //
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
+    // . . . . . . . . . . . . . . . . . . . . . . . . . . . [ ITERATORS ]  . //
     
-    void advance ( )    // counter clockwise || right
+    void advance ( )                               // counter clockwise || right
     {
         this->_set_step ( );
 
@@ -113,7 +104,7 @@ struct ANGLE
         this->_decrement_distance ( );
     }
     
-    void regress ( )    // clockwise         || left
+    void regress ( )                                // clockwise         || left
     {
         this->_set_step ( );
 
@@ -126,9 +117,7 @@ struct ANGLE
         this->_decrement_distance ( );
     }
     
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
-    // . CONVERSIONS . . . . . . . . . . . . . . . . . //
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
+    // . . . . . . . . . . . . . . . . . . . . . . . . . . [ CONVERSIONS ]  . //
     
     double convert_to_radian ( int degree )
     {
@@ -146,9 +135,7 @@ private:
     
     // Functions ............................................................ //
     
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
-    // . SETTERS . . . . . . . . . . . . . . . . . . . //
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
+    // . . . . . . . . . . . . . . . . . . . . . . . . . . . . [ SETTERS ]  . //
     
     void _set_step ( )
     {
@@ -185,27 +172,21 @@ private:
                                 : false;
     }
     
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
-    // . GETTERS . . . . . . . . . . . . . . . . . . . //
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
+    // . . . . . . . . . . . . . . . . . . . . . . . . . . . . [ GETTERS ]  . //
     
     int _get_step_divisor ( int degree_distance )
     {
         return step_divisor [ degree_distance ];
     }
     
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
-    // . ITERATORS . . . . . . . . . . . . . . . . . . //
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
+    // . . . . . . . . . . . . . . . . . . . . . . . . . . . [ ITERATORS ]  . //
     
     void _decrement_distance ( )
     {
         this->distance = this->distance - this->step;
     }
     
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
-    // . VALIDATORS  . . . . . . . . . . . . . . . . . //
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
+    // . . . . . . . . . . . . . . . . . . . . . . . . . .  [ VALIDATORS ]  . //
     
     void _validate_step_v_distance ( )
     {

@@ -5,7 +5,6 @@
 // @Copyright:  Copyright (c) 2022 Byrne-Systems
 
 #include <SFML/Graphics.hpp>
-#include <unordered_map>
 
 #include "include/headers.hpp"
 

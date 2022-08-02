@@ -99,6 +99,13 @@ private:
     
                 entity.next_step ( );
     
+                // TODO: MIGRATE PROXIMITY CHECK !? MAYBE !!!
+                for ( int i = 0; i < ENTITY_MAX; i++ )
+                    if ( i != entity.id )
+                        entity.check_proximity ( this->_entity[i] );
+                    else
+                        continue;
+                
                 if ( entity.walk == 0 )
                      entity.set_angle ( entity.angle.b, RNG::get_random ( 0, 360 ) );
     
@@ -118,11 +125,15 @@ private:
         DISPLAY::sense ( entity );
         #endif
     
-        #if DEBUG_SIGHTLINE
-        for ( int i = 1; i < ENTITY_MAX; i++ )
-            DISPLAY::sightline ( entity, this->_entity[i] );
-        #endif
+//        #if DEBUG_SIGHTLINE
+//        for ( int i = 1; i < ENTITY_MAX; i++ )
+//            DISPLAY::sightline ( entity, this->_entity[i] );
+//        #endif
     
+        #if DEBUG_SIGHTLINE
+        DISPLAY::sightline ( entity, this->_entity );
+        #endif
+        
         #if DEBUG_STEPS
         DISPLAY::steps ( entity );
         #endif

@@ -44,13 +44,13 @@ struct CELL
                               );
     }
     
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
-    // . CONSTRUCTORS (GENERIC) . . . . . . . . . . .  //
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
-    
     CELL  ( ) { }
     
     ~CELL ( ) { }
+    
+    // Functions ............................................................ //
+    
+    // . . . . . . . . . . . . . . . . . . . . . . . . . . . . [ GETTERS ]  . //
     
     int get_row ( )
     {
@@ -61,6 +61,8 @@ struct CELL
     {
         return this->matrix.column;
     }
+    
+    // . . . . . . . . . . . . . . . . . . . . . . . . . . [ INITIALIZER ]  . //
     
     void activate ( sf::Color color = colors::grid_a )
     {

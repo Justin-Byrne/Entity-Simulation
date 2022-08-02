@@ -33,10 +33,6 @@ struct COLOR
         this->destination = two;
     }
     
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
-    // . CONSTRUCTORS (GENERIC) . . . . . . . . . . .  //
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
-    
     COLOR ( )  { }
     
     ~COLOR ( ) { }

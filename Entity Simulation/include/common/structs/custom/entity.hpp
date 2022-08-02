@@ -24,6 +24,10 @@ struct ENTITY
     
     std::string grid_location;
     
+    std::unordered_map<int, int> seen;
+    
+//    int seen [ SEEN_MAX ];
+    
     // Constructors ......................................................... //
     
     ENTITY ( POINT origin )
@@ -50,9 +54,7 @@ struct ENTITY
 
     // Functions ............................................................ //
 
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
-    // . SETTERS . . . . . . . . . . . . . . . . . . . //
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
+    // . . . . . . . . . . . . . . . . . . . . . . . . . . . . [ SETTERS ]  . //
     
     void set_walk ( int distance )
     {
@@ -68,9 +70,7 @@ struct ENTITY
         this->angle = { angle_a, angle_b };
     }
     
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
-    // . GETTERS . . . . . . . . . . . . . . . . . . . //
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
+    // . . . . . . . . . . . . . . . . . . . . . . . . . . . . [ GETTERS ]  . //
 
     POINT rotate ( int degree )
     {
@@ -96,9 +96,7 @@ struct ENTITY
         return this->_matrix.column;
     }
     
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
-    // . ITERATORS . . . . . . . . . . . . . . . . . . //
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
+    // . . . . . . . . . . . . . . . . . . . . . . . . . . . [ ITERATORS ]  . //
     
     void next_step ( int step_size = 1 )
     {
@@ -118,14 +116,14 @@ struct ENTITY
         else
             this->walk -= step_size;                                            // subtract step_size from walk
         
+        // TODO: CHECK COLLISION AGAINST OTHER ENTITIES
+
         this->_check_boundary ( );
         
         this->_update_grid_location ( );
     }
     
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
-    // . VALIDATORS  . . . . . . . . . . . . . . . . . //
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
+    // . . . . . . . . . . . . . . . . . . . . . . . . . .  [ VALIDATORS ]  . //
     
     bool is_inside_sense ( ENTITY & entity )
     {
@@ -134,7 +132,7 @@ struct ENTITY
         return ( distance <= entity.attributes.size ) ? true : false;
     }
     
-    bool check_entity_distance ( ENTITY & entity )
+    bool is_near ( ENTITY & entity )
     {
         int diff_row    = std::abs ( this->_matrix.row    - entity.get_matrix_row    ( ) );
         int diff_column = std::abs ( this->_matrix.column - entity.get_matrix_column ( ) );
@@ -142,10 +140,33 @@ struct ENTITY
         return ( diff_row < 3 && diff_column < 3 ) ? true : false;
     }
     
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
-    // . MISC . . . . . . . . . . . . . . . . . . . .  //
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
+    void check_proximity ( ENTITY & entity )
+    {
+        if ( this->is_near ( entity ) )
+        {
+            if ( this->is_inside_sense ( entity ) )                             // I SEE YOU
+            {
+                if ( ! this->seen [ entity.id ] )                   // == 0
+                {
+                       this->seen [ entity.id ] = 1;
+                }
+                else                                                // != 0
+                {
+                       this->seen.insert ( { entity.id, 1 } );
+                }
+            }
+            else                                                                // I CAN'T SEE YOU YET || ANYMORE
+            {
+                if ( this->seen [ entity.id ] )
+                {
+                     this->seen.erase ( entity.id );
+                }
+            }
+        }
+    }
     
+    // . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  [ MISC ]  . //
+
     void print_attributes ( )
     {
         std::string OUTPUT = std::string ( ) +
@@ -161,7 +182,7 @@ struct ENTITY
             "Stamina:              %d\n"     +
             "Stamina Refactor:     %d\n\n";
         
-        printf (
+        std::printf (
                 OUTPUT.c_str ( ),
                 this->id,
                 attributes.vitality,
@@ -175,6 +196,23 @@ struct ENTITY
         );
     }
     
+    void print_seen ( )
+    {
+        if ( ! this->seen.empty ( ) )
+        {
+            std::printf ( "Oo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.o\n\n" );
+            
+            for ( auto & element : this->seen )
+                if ( element.second == 1 )
+                     std::printf (
+                         "[%d] see: --> entity: %d\n    value: %d\n\n------------------------\n\n",
+                         this->id,
+                         element.first,
+                         element.second
+                     );
+        }
+    }
+
 private:
     
     int _walk_gait = 0;
@@ -188,9 +226,7 @@ private:
     
     // Functions ............................................................ //
 
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
-    // . VALIDATORS  . . . . . . . . . . . . . . . . . //
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
+    // . . . . . . . . . . . . . . . . . . . . . . . . . .  [ VALIDATORS ]  . //
     
     void _check_boundary ( )
     {
@@ -201,9 +237,7 @@ private:
         this->origin.y = ( this->origin.y >= WINDOW_HEIGHT ) ? WINDOW_HEIGHT - 1 : this->origin.y;  // bottom
     }
     
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
-    // . MISC . . . . . . . . . . . . . . . . . . . .  //
-    // . . . . . . . . . . . . . . . . . . . . . . . . //
+    // . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  [ MISC ]  . //
     
     void _cache_steps ( )
     {
@@ -217,8 +251,6 @@ private:
     {
         this->_matrix.row    = std::floor ( this->origin.y / CELL_SIZE );
         this->_matrix.column = std::floor ( this->origin.x / CELL_SIZE );
-        
-        this->grid_location = std::string ( ) + std::to_string ( this->_matrix.row ) + ", " + std::to_string ( this->_matrix.column );
     }
 };
 

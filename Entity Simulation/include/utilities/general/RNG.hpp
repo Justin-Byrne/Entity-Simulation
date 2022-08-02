@@ -7,9 +7,6 @@
 #ifndef rng_hpp
 #define rng_hpp
 
-#include <stdlib.h>
-#include <random>
-
 namespace RNG
 {
     // Random ............................................................... //
@@ -24,7 +21,7 @@ namespace RNG
         return ( std::rand ( ) % ( upper - lower + 1 ) ) + lower;
     }
 
-    // Distributed ............................................................... //
+    // Distributed .......................................................... //
 
     int get_distributed ( int mean, int standard_deviation )
     {

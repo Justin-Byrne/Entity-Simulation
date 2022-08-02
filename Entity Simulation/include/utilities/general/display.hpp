@@ -13,11 +13,11 @@ extern sf::RenderWindow window;
 
 extern sf::Color * generate_step_colors ( sf::Uint8 top_color, bool invert );
 
+
 POINT rotate_origin, rotate_destination;
 
-sf::Color * step_colors = generate_step_colors ( 255, true );
-
 std::unordered_map<std::string, CELL> grid;
+
 
 const int neighboring_cells[8][2] =
 {
@@ -25,6 +25,8 @@ const int neighboring_cells[8][2] =
     {  0, -1 },             {  0,  1 },
     {  1, -1 }, {  1,  0 }, {  1,  1 }
 };
+
+sf::Color * step_colors = generate_step_colors ( 255, true );
 
 namespace DISPLAY
 {
@@ -53,19 +55,34 @@ namespace DISPLAY
         return EXIT_SUCCESS;
     }
 
-    int sightline ( ENTITY & entity_a, ENTITY & entity_b, COLOR color = { colors::yellow_sun, colors::transparent } )
+    int sightline ( ENTITY & entity, ENTITY entities[], COLOR color = { colors::yellow_sun, colors::transparent } )
     {
-        if ( entity_a.check_entity_distance( entity_b ) )
-        {
-            if ( entity_a.is_inside_sense ( entity_b ) )
-                SFML::render_dotted_line ( window, entity_a.origin, entity_b.origin, LINE_SEGMENTS, colors::red );
-
-            if ( entity_b.is_inside_sense ( entity_a ) )
-                SFML::render_dotted_line ( window, entity_b.origin, entity_a.origin, LINE_SEGMENTS, colors::blue_bright );
-        }
+        for ( auto seen : entity.seen )
+            if ( seen.second )
+                SFML::render_dotted_line (
+                    window,
+                    entity.origin,
+                    entities[seen.first].origin,
+                    LINE_SEGMENTS,
+                    colors::yellow_sun
+                );
             
         return EXIT_SUCCESS;
     }
+
+//    int sightline ( ENTITY & entity_a, ENTITY & entity_b, COLOR color = { colors::yellow_sun, colors::transparent } )
+//    {
+//        if ( entity_a.is_near ( entity_b ) )
+//        {
+//            if ( entity_a.is_inside_sense ( entity_b ) )
+//                SFML::render_dotted_line ( window, entity_a.origin, entity_b.origin, LINE_SEGMENTS, colors::red );
+//
+//            if ( entity_b.is_inside_sense ( entity_a ) )
+//                SFML::render_dotted_line ( window, entity_b.origin, entity_a.origin, LINE_SEGMENTS, colors::blue_bright );
+//        }
+//
+//        return EXIT_SUCCESS;
+//    }
 
     int steps ( ENTITY & entity )
     {
@@ -84,11 +101,11 @@ namespace DISPLAY
 
     int grid_location ( ENTITY & entity )
     {
-        grid [ entity.grid_location ].activate ( );
+        std::string key = std::string ( ) + std::to_string ( entity.get_matrix_row ( ) ) + ", " + std::to_string ( entity.get_matrix_column ( ) );
+        
+        grid [ key ].activate ( );
         
         //....................................................................//
-                
-        std::string key;
         
         for ( int i = 0; i < 8; i++ )
         {

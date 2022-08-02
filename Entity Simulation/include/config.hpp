@@ -19,23 +19,24 @@
 #define DEBUG_ENTITY_PRINT_ATTRIBUTES  0
 
 // ENTITY ATTRIBUTE CAPS
-#define SIZE_CAP             		  10
-#define SENSE_CAP            		  40
-#define HEALTH_CAP           		  20
-#define WALK_SPEED_CAP        		  20
-#define WALK_DISTANCE_CAP    		  70
-#define STAMINA_CAP          		  20
-#define STAMINA_REFACTOR_CAP 	      10
+#define SIZE_CAP             		  10    // 10
+#define SENSE_CAP            		  40    // 40
+#define HEALTH_CAP           		  20    // 20
+#define WALK_SPEED_CAP        		  20    // 20
+#define WALK_DISTANCE_CAP    		  70    // 70
+#define STAMINA_CAP          		  20    // 20
+#define STAMINA_REFACTOR_CAP 	      10    // 10
 
 // PROGRAM
 #define WINDOW_TITLE "Entity Simulation"
 #define WINDOW_WIDTH                 800
 #define WINDOW_HEIGHT                800
-#define ENTITY_MAX                   900
-#define STEP_MAX                      50
+#define ENTITY_MAX                  1200
+#define STEP_MAX                      25
+#define SEEN_MAX     ( ENTITY_MAX / 25 )
 #define LINE_SEGMENTS                  5
 #define FRAME_RATE                    30
-#define CELL_SIZE                     20
+#define CELL_SIZE                     50
 
 #define NULL_COLOR 			colors::null
 
