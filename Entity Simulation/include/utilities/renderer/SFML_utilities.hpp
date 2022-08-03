@@ -88,11 +88,8 @@ namespace SFML
 
         window.draw ( line, 2, sf::Lines );
         
-        if ( origin_point )
-             render_circle ( window, origin, 2, color, 1, colors::transparent );
-        
-        if ( destination_point )
-             render_circle ( window, destination, 2, color, 1, colors::transparent );
+        if ( origin_point )      render_circle ( window, origin,      2, color, 1, colors::transparent );
+        if ( destination_point ) render_circle ( window, destination, 2, color, 1, colors::transparent );
         
         return EXIT_SUCCESS;
     }
@@ -118,11 +115,8 @@ namespace SFML
         
         window.draw ( line, segments, sf::Points );
         
-        if ( origin_point )
-             render_circle ( window, origin, 2, color, 1, colors::transparent );
-        
-        if ( destination_point )
-             render_circle ( window, destination, 2, color, 1, colors::transparent );
+        if ( origin_point )      render_circle ( window, origin,      2, color, 1, colors::transparent );
+        if ( destination_point ) render_circle ( window, destination, 2, color, 1, colors::transparent );
         
         return EXIT_SUCCESS;
     }

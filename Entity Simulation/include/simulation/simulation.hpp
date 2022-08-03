@@ -99,8 +99,7 @@ private:
     
                 entity.next_step ( );
     
-                // TODO: MIGRATE PROXIMITY CHECK !? MAYBE !!!
-                for ( int i = 0; i < ENTITY_MAX; i++ )
+                for ( int i = 0; i < ENTITY_MAX; i++ )                          // proximity check
                     if ( i != entity.id )
                         entity.check_proximity ( this->_entity[i] );
                     else

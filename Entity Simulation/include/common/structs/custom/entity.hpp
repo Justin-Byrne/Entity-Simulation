@@ -30,14 +30,14 @@ struct ENTITY : public MATRIX, public ANGLE
     
     ENTITY ( POINT origin )
     : origin  ( origin )
-    , id      ( ID++   )
+    , id      ( ID++ )
     , _matrix ( std::floor ( this->origin.y / CELL_SIZE ), std::floor ( this->origin.x / CELL_SIZE ) )
     { }
     
     ENTITY ( POINT origin, int angle_a, int angle_b )
     : origin  ( origin )
-    , id      ( ID++   )
     , angle   ( angle_a, angle_b )
+    , id      ( ID++ )
     , _matrix ( std::floor ( this->origin.y / CELL_SIZE ), std::floor ( this->origin.x / CELL_SIZE ) )
     {
         this->angle.init ( );
@@ -99,11 +99,11 @@ struct ENTITY : public MATRIX, public ANGLE
         this->_cache_steps ( );
         #endif
         
-        step_size    = this->_set_step_size ( step_size );
+        step_size    = this->_factor_step_size ( step_size );
         
-        this->origin = ANGLE().rotate ( this->origin, this->angle.a, step_size );  // rotate origin
+        this->origin = ANGLE().rotate ( this->origin, this->angle.a, step_size ); // set angle for next step
         
-        // TODO: CHECK COLLISION AGAINST OTHER ENTITIES
+        // TODO: CHECK COLLISION AGAINST OTHER ENTITY BODIES
 
         this->_check_boundary ( );
         
@@ -195,23 +195,6 @@ private:
     MATRIX _matrix;
     
     // Functions ............................................................ //
-
-    // . . . . . . . . . . . . . . . . . . . . . . . . . . . . [ SETTERS ]  . //
-    
-    int _set_step_size ( int & step_size )
-    {
-        if ( this->_walk_gait < this->attributes.walk_speed )                   // increase _walk_gait
-             this->_walk_gait += 1;
-        
-        step_size += this->_walk_gait;                                          // increment step_size
-        
-        if ( step_size > this->walk )                                           // reset walk && _walk_gait
-            this->walk  = this->_walk_gait = 0;
-        else                                                                    // subtract step_size from walk
-            this->walk -= step_size;
-        
-        return step_size;
-    }
     
     // . . . . . . . . . . . . . . . . . . . . . . . . . .  [ VALIDATORS ]  . //
     
@@ -238,6 +221,21 @@ private:
     {
         this->_matrix.row    = std::floor ( this->origin.y / CELL_SIZE );
         this->_matrix.column = std::floor ( this->origin.x / CELL_SIZE );
+    }
+    
+    int _factor_step_size ( int & step_size )
+    {
+        if ( this->_walk_gait < this->attributes.walk_speed )                   // increase _walk_gait
+             this->_walk_gait += 1;
+        
+        step_size += this->_walk_gait;                                          // increment step_size
+        
+        if ( step_size > this->walk )                                           // reset walk && _walk_gait
+            this->walk  = this->_walk_gait = 0;
+        else                                                                    // subtract step_size from walk
+            this->walk -= step_size;
+        
+        return step_size;
     }
 };
 
