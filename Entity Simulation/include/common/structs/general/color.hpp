@@ -23,15 +23,13 @@ struct COLOR
     // Constructors ......................................................... //
     
     COLOR ( sf::Color one, sf::Color two )
-    {
-        this->one    = one;
-        this->stroke = one;
-        this->origin = one;
-        
-        this->two         = two;
-        this->fill        = two;
-        this->destination = two;
-    }
+    : one         ( one )
+    , stroke      ( one )
+    , origin      ( one )
+    , two         ( two )
+    , fill        ( two )
+    , destination ( two )
+    {  }
     
     COLOR ( )  { }
     

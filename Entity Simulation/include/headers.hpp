@@ -38,6 +38,7 @@
 #include "common/structs/general/point.hpp"
 #include "common/structs/general/angle.hpp"
 #include "common/structs/general/color.hpp"
+#include "common/structs/general/matrix.hpp"
 #include "common/structs/general/cell.hpp"
 
 // . . . . . . . . . . . . . . . . . . . . . . . . //

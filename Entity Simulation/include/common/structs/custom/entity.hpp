@@ -7,7 +7,7 @@
 #ifndef entity_hpp
 #define entity_hpp
 
-struct ENTITY
+struct ENTITY : public MATRIX, public ANGLE
 {
     int id;
     static int ID;
@@ -26,26 +26,21 @@ struct ENTITY
     
     std::unordered_map<int, int> seen;
     
-//    int seen [ SEEN_MAX ];
-    
     // Constructors ......................................................... //
     
     ENTITY ( POINT origin )
-    : origin ( origin )
-    , id     ( ID++   )
-    {
-        this->_update_grid_location ( );
-    }
+    : origin  ( origin )
+    , id      ( ID++   )
+    , _matrix ( std::floor ( this->origin.y / CELL_SIZE ), std::floor ( this->origin.x / CELL_SIZE ) )
+    { }
     
     ENTITY ( POINT origin, int angle_a, int angle_b )
-    : origin ( origin )
-    , id     ( ID++   )
+    : origin  ( origin )
+    , id      ( ID++   )
+    , angle   ( angle_a, angle_b )
+    , _matrix ( std::floor ( this->origin.y / CELL_SIZE ), std::floor ( this->origin.x / CELL_SIZE ) )
     {
-        this->angle.a = angle_a;
-        this->angle.b = angle_b;
-    
         this->angle.init ( );
-        this->_update_grid_location ( );
     }
     
     ENTITY  ( ) { };
@@ -104,17 +99,9 @@ struct ENTITY
         this->_cache_steps ( );
         #endif
         
-        if ( this->_walk_gait < this->attributes.walk_speed )                   // increase _walk_gait
-             this->_walk_gait += 1;
+        step_size    = this->_set_step_size ( step_size );
         
-        step_size     += this->_walk_gait;                                      // calculate step_size
-        
-        this->origin   = ANGLE().rotate ( this->origin, this->angle.a, step_size );
-        
-        if ( step_size > this->walk )
-            this->walk = this->_walk_gait = 0;                                  // reset walk && _walk_gait
-        else
-            this->walk -= step_size;                                            // subtract step_size from walk
+        this->origin = ANGLE().rotate ( this->origin, this->angle.a, step_size );  // rotate origin
         
         // TODO: CHECK COLLISION AGAINST OTHER ENTITIES
 
@@ -145,23 +132,13 @@ struct ENTITY
         if ( this->is_near ( entity ) )
         {
             if ( this->is_inside_sense ( entity ) )                             // I SEE YOU
-            {
-                if ( ! this->seen [ entity.id ] )                   // == 0
-                {
+                if ( ! this->seen [ entity.id ] )             // seen.first == 0
                        this->seen [ entity.id ] = 1;
-                }
-                else                                                // != 0
-                {
+                else                                          // seen.first != 0
                        this->seen.insert ( { entity.id, 1 } );
-                }
-            }
-            else                                                                // I CAN'T SEE YOU YET || ANYMORE
-            {
+            else                                                                // I CAN'T SEE YOU ( YET || ANYMORE )
                 if ( this->seen [ entity.id ] )
-                {
                      this->seen.erase ( entity.id );
-                }
-            }
         }
     }
     
@@ -200,8 +177,6 @@ struct ENTITY
     {
         if ( ! this->seen.empty ( ) )
         {
-            std::printf ( "Oo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.oOo.o\n\n" );
-            
             for ( auto & element : this->seen )
                 if ( element.second == 1 )
                      std::printf (
@@ -217,15 +192,27 @@ private:
     
     int _walk_gait = 0;
     
-    struct MATRIX
-    {
-        int row    = 0;
-        int column = 0;
-    }
-    _matrix;
+    MATRIX _matrix;
     
     // Functions ............................................................ //
 
+    // . . . . . . . . . . . . . . . . . . . . . . . . . . . . [ SETTERS ]  . //
+    
+    int _set_step_size ( int & step_size )
+    {
+        if ( this->_walk_gait < this->attributes.walk_speed )                   // increase _walk_gait
+             this->_walk_gait += 1;
+        
+        step_size += this->_walk_gait;                                          // increment step_size
+        
+        if ( step_size > this->walk )                                           // reset walk && _walk_gait
+            this->walk  = this->_walk_gait = 0;
+        else                                                                    // subtract step_size from walk
+            this->walk -= step_size;
+        
+        return step_size;
+    }
+    
     // . . . . . . . . . . . . . . . . . . . . . . . . . .  [ VALIDATORS ]  . //
     
     void _check_boundary ( )

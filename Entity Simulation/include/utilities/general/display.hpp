@@ -64,25 +64,13 @@ namespace DISPLAY
                     entity.origin,
                     entities[seen.first].origin,
                     LINE_SEGMENTS,
-                    colors::yellow_sun
+                    colors::yellow_sun,
+                    false,
+                    true
                 );
-            
+
         return EXIT_SUCCESS;
     }
-
-//    int sightline ( ENTITY & entity_a, ENTITY & entity_b, COLOR color = { colors::yellow_sun, colors::transparent } )
-//    {
-//        if ( entity_a.is_near ( entity_b ) )
-//        {
-//            if ( entity_a.is_inside_sense ( entity_b ) )
-//                SFML::render_dotted_line ( window, entity_a.origin, entity_b.origin, LINE_SEGMENTS, colors::red );
-//
-//            if ( entity_b.is_inside_sense ( entity_a ) )
-//                SFML::render_dotted_line ( window, entity_b.origin, entity_a.origin, LINE_SEGMENTS, colors::blue_bright );
-//        }
-//
-//        return EXIT_SUCCESS;
-//    }
 
     int steps ( ENTITY & entity )
     {

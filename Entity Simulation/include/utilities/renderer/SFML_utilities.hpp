@@ -78,7 +78,7 @@ namespace SFML
     // . LINE  . . . . . . . . . . . . . . . . . . . . //
     // . . . . . . . . . . . . . . . . . . . . . . . . //
 
-    int render_line ( sf::RenderWindow & window, POINT origin, POINT destination, sf::Color color )
+    int render_line ( sf::RenderWindow & window, POINT origin, POINT destination, sf::Color color, bool origin_point = false, bool destination_point = false )
     {
         sf::Vertex line[] =
         {
@@ -88,6 +88,12 @@ namespace SFML
 
         window.draw ( line, 2, sf::Lines );
         
+        if ( origin_point )
+             render_circle ( window, origin, 2, color, 1, colors::transparent );
+        
+        if ( destination_point )
+             render_circle ( window, destination, 2, color, 1, colors::transparent );
+        
         return EXIT_SUCCESS;
     }
 
@@ -95,7 +101,7 @@ namespace SFML
     // . DOTTED LINE . . . . . . . . . . . . . . . . . //
     // . . . . . . . . . . . . . . . . . . . . . . . . //
 
-    int render_dotted_line ( sf::RenderWindow & window, POINT origin, POINT destination, int segments, sf::Color color )
+    int render_dotted_line ( sf::RenderWindow & window, POINT origin, POINT destination, int segments, sf::Color color, bool origin_point = false, bool destination_point = false )
     {
         sf::Vertex line[segments];
         
@@ -111,6 +117,12 @@ namespace SFML
         }
         
         window.draw ( line, segments, sf::Points );
+        
+        if ( origin_point )
+             render_circle ( window, origin, 2, color, 1, colors::transparent );
+        
+        if ( destination_point )
+             render_circle ( window, destination, 2, color, 1, colors::transparent );
         
         return EXIT_SUCCESS;
     }

@@ -11,7 +11,7 @@
 
 extern sf::RenderWindow window;
 
-struct CELL
+struct CELL : public POINT
 {
     POINT start;
     POINT end;
@@ -23,25 +23,18 @@ struct CELL
     // Constructors ......................................................... //
     
     CELL ( int iterator_height, int iterator_width, int size )
+    : _matrix ( iterator_height, iterator_width )
+    , size    ( size )
+    , start   ( iterator_width * size, iterator_height * size )
+    , end     ( ( iterator_width  + 1 ) * size, ( iterator_width  + 1 ) * size )
     {
-        this->size          = size;
-        
-        this->matrix.row    = iterator_height;
-        this->matrix.column = iterator_width;
-        
-        this->start.x       = iterator_width  * size;
-        this->start.y       = iterator_height * size;
-        
-        this->end.x         = ( iterator_width  + 1 ) * size;
-        this->end.y         = ( iterator_height + 1 ) * size;
-        
-        this->shape         = SFML::create_rectangle (
-                                  this->start,
-                                  POINT { this->size, this->size },
-                                  colors::gray_dark,
-                                  0,
-                                  colors::transparent
-                              );
+        this->shape = SFML::create_rectangle (
+                          this->start,
+                          POINT { this->size, this->size },
+                          colors::gray_dark,
+                          0,
+                          colors::transparent
+                      );
     }
     
     CELL  ( ) { }
@@ -54,12 +47,12 @@ struct CELL
     
     int get_row ( )
     {
-        return this->matrix.row;
+        return this->_matrix.row;
     }
     
     int get_column ( )
     {
-        return this->matrix.column;
+        return this->_matrix.column;
     }
     
     // . . . . . . . . . . . . . . . . . . . . . . . . . . [ INITIALIZER ]  . //
@@ -76,12 +69,7 @@ struct CELL
     
 private:
     
-    struct MATRIX
-    {
-        int row    = 0;
-        int column = 0;
-    }
-    matrix;
+    MATRIX _matrix;
 };
 
 #endif /* cell_hpp */
