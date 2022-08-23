@@ -7,6 +7,11 @@
 #ifndef SFML_utilities_hpp
 #define SFML_utilities_hpp
 
+#include <SFML/Graphics.hpp>
+#include "../../common/structs/general/point.hpp"
+#include "../../common/static/colors.hpp"
+#include "../../common/structs/general/angle.hpp"
+
 namespace SFML
 {
     // Create ............................................................... //

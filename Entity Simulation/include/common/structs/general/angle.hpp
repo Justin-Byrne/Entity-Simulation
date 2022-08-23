@@ -7,7 +7,11 @@
 #ifndef angle_hpp
 #define angle_hpp
 
+#include <map>
+
 #include "../../../utilities/general/RNG.hpp"
+#include "point.hpp"
+#include "../../math/math.hpp"
 
 std::map<int, int> step_divisor =
 {

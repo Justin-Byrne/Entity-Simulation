@@ -8,6 +8,7 @@
 #define cell_hpp
 
 #include "../../../utilities/renderer/SFML_utilities.hpp"
+#include "matrix.hpp"
 
 extern sf::RenderWindow window;
 

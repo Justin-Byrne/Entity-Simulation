@@ -10,11 +10,11 @@
 // GLOBAL CONSTS ............................................................ //
 
 // DEBUG
-#define DEBUG_ROTATE                   1
+#define DEBUG_ROTATE                   0
 #define DEBUG_BODY                     1
 #define DEBUG_SENSE                    0
 #define DEBUG_SIGHTLINE                0
-#define DEBUG_STEPS                    0
+#define DEBUG_STEPS                    1
 #define DEBUG_UNIFORM_GRID             0
 #define DEBUG_ENTITY_PRINT_ATTRIBUTES  0
 
@@ -31,7 +31,7 @@
 #define WINDOW_TITLE "Entity Simulation"
 #define WINDOW_WIDTH                 800
 #define WINDOW_HEIGHT                800
-#define ENTITY_MAX                  1000
+#define ENTITY_MAX                   200
 #define STEP_MAX                      25
 #define SEEN_MAX     ( ENTITY_MAX / 25 )
 #define LINE_SEGMENTS                  5

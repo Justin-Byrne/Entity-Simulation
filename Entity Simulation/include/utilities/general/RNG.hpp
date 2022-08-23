@@ -4,8 +4,11 @@
 // @Date:       Created 6/23/22 at 1:31 PM
 // @Copyright:  Copyright (c) 2022 Byrne-Systems
 
-#ifndef rng_hpp
-#define rng_hpp
+#ifndef RNG_hpp
+#define RNG_hpp
+
+#include <cstdlib>
+#include <random>
 
 namespace RNG
 {
@@ -39,4 +42,4 @@ namespace RNG
     }
 }
 
-#endif /* rng_hpp */
+#endif /* RNG_hpp */

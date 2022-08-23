@@ -7,6 +7,17 @@
 #ifndef entity_hpp
 #define entity_hpp
 
+#include <string>
+#include <unordered_map>
+
+#include "attributes.hpp"
+
+#include "../general/matrix.hpp"
+#include "../general/point.hpp"
+#include "../general/angle.hpp"
+
+#include "../../static/states.hpp"
+
 struct ENTITY : public MATRIX, public ANGLE
 {
     int id;

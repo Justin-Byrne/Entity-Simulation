@@ -7,7 +7,14 @@
 #ifndef display_hpp
 #define display_hpp
 
-#include "../../utilities/renderer/SFML_utilities.hpp"
+#include <unordered_map>
+
+#include "../renderer/SFML_utilities.hpp"
+
+#include "../../common/structs/custom/entity.hpp"
+
+#include "../../common/structs/general/cell.hpp"
+#include "../../common/structs/general/color.hpp"
 
 extern sf::RenderWindow window;
 

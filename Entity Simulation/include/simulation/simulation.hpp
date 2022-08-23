@@ -7,6 +7,16 @@
 #ifndef simulation_hpp
 #define simulation_hpp
 
+#include <stdlib.h>
+
+#include "../common/structs/custom/entity.hpp"
+
+#include "../common/structs/general/point.hpp"
+
+#include "../utilities/general/RNG.hpp"
+
+#include "../utilities/general/display.hpp"
+
 struct SIMULATION
 {
     static SIMULATION & instance ( )

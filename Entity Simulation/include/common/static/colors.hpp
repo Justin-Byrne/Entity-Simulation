@@ -7,6 +7,8 @@
 #ifndef colors_hpp
 #define colors_hpp
 
+#include <SFML/Graphics/Color.hpp>
+
 namespace colors
 {
     sf::Color white          = { 255, 255, 255 };
@@ -26,7 +28,8 @@ namespace colors
 
     sf::Color grid_a         = {  31,  70, 111 };
     sf::Color grid_b         = {  31,  91, 111 };
-    sf::Color grid_c         = { 246, 225,   0 };
+//    sf::Color grid_c         = { 246, 225,   0 };
+    sf::Color grid_c         = {  0,  240, 250 };
 
     sf::Color sense_a        = { 237, 235,  78 };
     sf::Color sense_b        = { 161, 160,  56 };

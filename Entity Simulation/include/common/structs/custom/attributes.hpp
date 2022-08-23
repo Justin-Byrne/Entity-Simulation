@@ -7,6 +7,8 @@
 #ifndef attributes_hpp
 #define attributes_hpp
 
+#include "../../../config.hpp"
+
 #include "../../../utilities/general/RNG.hpp"
 #include "../../../utilities/general/scale.hpp"
 

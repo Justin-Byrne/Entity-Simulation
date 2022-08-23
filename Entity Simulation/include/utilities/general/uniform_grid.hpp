@@ -7,6 +7,16 @@
 #ifndef uniform_grid_hpp
 #define uniform_grid_hpp
 
+#include <SFML/Graphics.hpp>
+
+#include <unordered_map>
+
+#include "../../config.hpp"
+
+#include "../../common/structs/general/cell.hpp"
+
+#include "../../common/static/colors.hpp"
+
 extern sf::RenderWindow window;
 
 extern std::unordered_map<std::string, CELL> grid;
