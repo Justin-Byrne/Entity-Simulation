@@ -97,35 +97,35 @@ You can toggle and augment various configuration options under `config.hpp`
 
 ### Body
 
-![Body](https://github.com/Justin-Byrne/Entity-Simulation/images/body.gif)
+![Body](https://github.com/Justin-Byrne/Entity-Simulation/blob/main/images/body.gif)
 
 ### Rotate
 
-![Rotate](https://github.com/Justin-Byrne/Entity-Simulation/images/rotate.gif)
+![Rotate](https://github.com/Justin-Byrne/Entity-Simulation/blob/main/images/rotate.gif)
 
 ### Sense
 
-![Sense](https://github.com/Justin-Byrne/Entity-Simulation/images/sense.gif)
+![Sense](https://github.com/Justin-Byrne/Entity-Simulation/blob/main/images/sense.gif)
 
 ### Sightline
 
-![Sightline](https://github.com/Justin-Byrne/Entity-Simulation/images/sighline.gif)
+![Sightline](https://github.com/Justin-Byrne/Entity-Simulation/blob/main/images/sighline.gif)
 
 ### Steps
 
-![Steps](https://github.com/Justin-Byrne/Entity-Simulation/images/steps.gif)
+![Steps](https://github.com/Justin-Byrne/Entity-Simulation/blob/main/images/steps.gif)
 
 ### Uniform Grid
 
-![Uniform Grid](https://github.com/Justin-Byrne/Entity-Simulation/images/uniform_grid.gif)
+![Uniform Grid](https://github.com/Justin-Byrne/Entity-Simulation/blob/main/images/uniform_grid.gif)
 
 ### Body & Steps
 
-![Body & Steps](https://github.com/Justin-Byrne/Entity-Simulation/images/body_n_steps.gif)
+![Body & Steps](https://github.com/Justin-Byrne/Entity-Simulation/blob/main/images/body_n_steps.gif)
 
 ### Body, Steps, and Sense
 
-![Body, Steps, and Sense](https://github.com/Justin-Byrne/Entity-Simulation/images/body_n_steps_n_sense.gif)
+![Body, Steps, and Sense](https://github.com/Justin-Byrne/Entity-Simulation/blob/main/images/body_n_steps_n_sense.gif)
 
 ## Support
 
