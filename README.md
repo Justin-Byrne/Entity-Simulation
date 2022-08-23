@@ -1,11 +1,11 @@
-# Entity Simulation: Entity Simulator for Simulated Experiments
+# Entity Simulation
 
 ![issues](https://img.shields.io/github/issues/Justin-Byrne/Entity-Simulation)
 ![forks](https://img.shields.io/github/forks/Justin-Byrne/Entity-Simulation)
 ![stars](https://img.shields.io/github/stars/Justin-Byrne/Entity-Simulation)
 ![license](https://img.shields.io/github/license/Justin-Byrne/Entity-Simulation)
 
-This tool is being developed as an entity simulator for simulated experiments
+Entity simulator for simulated experiments
 
 ## Table of Contents
 - [Installation](#installation)
