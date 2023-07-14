@@ -1,6 +1,7 @@
 # VARIABLES
 ## Binary
 BIN := Entity-Simulation
+SFML_V := 2.6.0
 
 ## Compiler
 CXX := g++
@@ -22,7 +23,7 @@ ifeq ($(OS),Windows_NT)
 	LIBS := -lsfml-graphics -lsfml-systems -lsfml-window
 else
 	CLEAN := rm -f $(OBJS) *.o && rm -f $(BIN)
-	LIBS := -lsfml-graphics.2.5.1 -lsfml-system.2.5.1 -lsfml-window.2.5.1
+	LIBS := -lsfml-graphics.${SFML_V} -lsfml-system.${SFML_V} -lsfml-window.${SFML_V}
 endif
 
 # COMMANDS
