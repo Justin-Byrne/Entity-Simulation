@@ -38,6 +38,7 @@ Compile project, under `(root)/Entity Simulation/`
 
 ```sh
 > make
+> make clean
 ```
 
 ## Usage
@@ -177,7 +178,7 @@ Please [open an issue](https://github.com/Justin-Byrne/Entity-Simulation/issues/
     │   │   │           ├── matrix.hpp
     │   │   │           │
     │   │   │           └── point.hpp
-    │   │   │        
+    │   │   │
     │   │   ├── simulation/
     │   │   │   │
     │   │   │   └── simulation.hpp
@@ -205,7 +206,7 @@ Please [open an issue](https://github.com/Justin-Byrne/Entity-Simulation/issues/
     │   │   ├── config.hpp
     │   │   │
     │   │   └── headers.hpp
-    │   │           
+    │   │
     │   ├── libs/
     │   │   │
     │   │   └── SFML/     (SFML Raw Header Files)

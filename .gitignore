@@ -11,3 +11,7 @@ DerivedData
 
 ## User Settgins
 xcuserdata/
+
+## Xcode Property ##
+Build/
+.xcodeproj

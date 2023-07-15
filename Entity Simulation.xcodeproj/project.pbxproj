@@ -36,11 +36,11 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F08A4D692A61C834009E5E03 /* libsfml-window.2.6.0.dylib in Embed Libraries */,
-				F08A4D652A61C834009E5E03 /* libsfml-network.2.6.0.dylib in Embed Libraries */,
-				F08A4D672A61C834009E5E03 /* libsfml-system.2.6.0.dylib in Embed Libraries */,
-				F08A4D612A61C834009E5E03 /* libsfml-audio.2.6.0.dylib in Embed Libraries */,
 				F08A4D632A61C834009E5E03 /* libsfml-graphics.2.6.0.dylib in Embed Libraries */,
+				F08A4D672A61C834009E5E03 /* libsfml-system.2.6.0.dylib in Embed Libraries */,
+				F08A4D692A61C834009E5E03 /* libsfml-window.2.6.0.dylib in Embed Libraries */,
+				F08A4D612A61C834009E5E03 /* libsfml-audio.2.6.0.dylib in Embed Libraries */,
+				F08A4D652A61C834009E5E03 /* libsfml-network.2.6.0.dylib in Embed Libraries */,
 			);
 			name = "Embed Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -63,11 +63,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F08A4D6F2A61C868009E5E03 /* libsfml-window.2.6.0.dylib in Frameworks */,
-				F08A4D6D2A61C868009E5E03 /* libsfml-network.2.6.0.dylib in Frameworks */,
-				F08A4D6E2A61C868009E5E03 /* libsfml-system.2.6.0.dylib in Frameworks */,
-				F08A4D6B2A61C868009E5E03 /* libsfml-audio.2.6.0.dylib in Frameworks */,
 				F08A4D6C2A61C868009E5E03 /* libsfml-graphics.2.6.0.dylib in Frameworks */,
+				F08A4D6E2A61C868009E5E03 /* libsfml-system.2.6.0.dylib in Frameworks */,
+				F08A4D6F2A61C868009E5E03 /* libsfml-window.2.6.0.dylib in Frameworks */,
+				F08A4D6B2A61C868009E5E03 /* libsfml-audio.2.6.0.dylib in Frameworks */,
+				F08A4D6D2A61C868009E5E03 /* libsfml-network.2.6.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
