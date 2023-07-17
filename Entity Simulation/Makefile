@@ -9,7 +9,7 @@ CXX_FLAGS := -std=c++11
 
 SRC_DIRS := ./include
 
-LD_FLAG := -L../Build/Products/Debug
+# LD_FLAG :=
 
 SRCS := $(shell find $(SRC_DIRS) -name '*.hpp')
 
@@ -33,7 +33,7 @@ all: $(BIN)
 ## Binary
 $(BIN): $(OBJS) main.cpp
 	touch $@
-	$(CXX) $(LD_FLAG) $(CXX_FLAGS) main.cpp $(OBJS) -o $@ $(LIBS) -march=native -v
+	$(CXX) $(CXX_FLAGS) main.cpp $(OBJS) -o $@ $(LIBS) -march=native -v $(LD_FLAG)
 
 ## Objects
 %.o: %.hpp

@@ -4,10 +4,12 @@
 ![forks](https://img.shields.io/github/forks/Justin-Byrne/Entity-Simulation)
 ![stars](https://img.shields.io/github/stars/Justin-Byrne/Entity-Simulation)
 ![license](https://img.shields.io/github/license/Justin-Byrne/Entity-Simulation)
+<img src="https://img.shields.io/badge/SFML-2.5.1-yellow" />
 
 Entity simulator for simulated experiments
 
 ## Table of Contents
+- [Requirements](#requirements)
 - [Installation](#installation)
 - [Usage](#usage)
   - [Linux/Mac](#linux/mac)
@@ -25,6 +27,12 @@ Entity simulator for simulated experiments
 - [Support](#support)
 - [Structure](#structure)
 - [Copyright](#copyright)
+
+## Requirements
+
+| Program | Function | Required | Download |
+| :---: | :--- | :---: | :---: |
+| SFML | Media Rendering Library | :white_check_mark: | [:floppy_disk:](https://www.sfml-dev.org/download.php) |
 
 ## Installation
 
@@ -137,13 +145,7 @@ Please [open an issue](https://github.com/Justin-Byrne/Entity-Simulation/issues/
     . (root)
     │
     │
-    ├── Build             (Entity Simulation Debug Executables...)
-    │   │
-    │   └─ Products/
-    │       │
-    │       └─ Debug/
-    │
-    ├── Entity Simulation (Project files...)
+    ├── Entity Simulation
     │   │
     │   ├── include/
     │   │   │
@@ -216,7 +218,6 @@ Please [open an issue](https://github.com/Justin-Byrne/Entity-Simulation/issues/
     │
     ├── images/           (Media files...)
     │
-    ├── Entity Simulation.xcodeproj
     ├── LICENSE
     └── README.md
 
